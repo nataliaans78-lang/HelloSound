@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#15161a">
+  <link rel="icon" href="../favicon.svg" sizes="any" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Hello Sound</title>
+</head>
+<body>
+  <div id="playlist" role="region" aria-label="Playlist panel">
+      <div class="title-container">
+        <h1 class="animated-text" id="playlist-title">
+          <span data-letter="P">P</span><span data-letter="l">l</span><span data-letter="a">a</span><span data-letter="y">y</span><span data-letter="l">l</span><span data-letter="i">i</span><span data-letter="s">s</span><span data-letter="t">t</span>
+        </h1>
+      </div>
+      <div id="song-list" role="list" aria-label="Tracks">
+        <div id="song-list-empty" aria-live="polite" hidden>No matches found</div>
+        <div id="playlist-drop-overlay" class="drop-zone" aria-hidden="true">
+          <span>Drag &amp; Drop</span>
+          <p id="drop-hint">drag audio files or a music folder here</p>
+        </div>
+      </div>
+      <div id="playlist-footer">
+        <div id="fileupload-container">
+          <label for="fileupload" id="custom-file-upload" class="upload-btn">Upload Files</label>
+          <button id="upload-btn-mobile" class="icon-btn" type="button" aria-label="Upload files" title="Upload files">
+            <img src="icons/upload.svg" alt="" aria-hidden="true">
+          </button>
+          <input type="file" id="fileupload" accept="audio/*" multiple hidden>
+          <div id="playlist-actions">
+            <button id="playlist-clear-btn" type="button" aria-label="Clear playlist" title="Clear playlist" hidden aria-hidden="true">Clear</button>
+          </div>
+        </div>
+        <div id="playlist-tools">
+          <button id="playlist-tools-toggle" class="icon-btn playlist-tools-toggle" type="button" aria-label="Open search panel" aria-expanded="false" aria-controls="playlist-tools-panel" title="Search">
+            <img src="icons/search.svg" alt="" aria-hidden="true">
+          </button>
+          <div id="playlist-tools-panel" role="search" aria-label="Playlist search panel" aria-hidden="true">
+            <div class="playlist-search">
+              <input id="song-search" type="search" placeholder="Search tracks" aria-label="Search tracks" autocomplete="off">
+              <button id="song-search-clear" class="playlist-tool-btn playlist-tool-close" type="button" aria-label="Close search panel" title="Close search">
+                <img src="icons/down.svg" alt="" aria-hidden="true">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="playlist-handle" aria-hidden="true"></div>
+
+   </div>
+
+  <div id="visualizer-container">
+    <canvas id="canvasA"></canvas>
+      <div id="audio-controls">
+        <input type="range" id="seek-bar" value="0" step="1" min="0" max="100" aria-label="Seek">
+        <div id="time-display">
+          <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+        </div>
+        <input type="range" id="volume-bar" value="100" step="1" min="0" max="100" aria-label="Volume">
+        <span id="volume-percentage">100%</span>
+
+        <div class="controls">
+          <button id="eq-btn" class="icon-btn" aria-label="Open equalizer">
+            <img id="eq-icon" src="icons/eq.svg" alt="" aria-hidden="true">
+          </button>
+          <button id="shuffle-btn" class="icon-btn" aria-label="Shuffle"><img src="icons/shuffle.svg" alt="" aria-hidden="true"></button>
+          <button id="prev-btn" class="icon-btn" aria-label="Previous track"><img src="icons/previous.svg" alt="" aria-hidden="true"></button>
+          <button id="play-pause-btn" class="icon-btn" aria-label="Play"><img id="play-pause-icon" src="icons/play.svg" alt="" aria-hidden="true"></button>
+          <button id="next-btn" class="icon-btn" aria-label="Next track"><img src="icons/next.svg" alt="" aria-hidden="true"></button>
+          <button id="repeat-btn" class="icon-btn" aria-label="Repeat"><img src="icons/repeat.svg" alt="" aria-hidden="true"></button>
+        </div>
+
+          <div id="eq-panel">
+            <div class="eq-panel-header">
+              <h3>Equalizer</h3>
+              <button id="eq-close-btn" class="icon-btn" aria-label="Close equalizer">
+                <img src="icons/return.svg" alt="" aria-hidden="true">
+              </button>
+            </div>
+
+            <div class="eq-presets">
+              <label for="eq-preset-select">Preset</label>
+              <select id="eq-preset-select">
+                <option value="custom">Custom</option>
+                <option value="flat">Flat</option>
+                <option value="bass-boost">Bass Boost</option>
+                <option value="vocal">Vocal</option>
+                <option value="treble-boost">Treble Boost</option>
+              </select>
+              <button id="eq-reset-btn" type="button">Reset</button>
+            </div>
+
+            <div class="eq-band">
+              <label>Bass</label>
+              <input type="range" min="-12" max="12" value="0" data-band="bass" aria-label="Bass">
+            </div>
+
+            <div class="eq-band">
+              <label>Mid</label>
+              <input type="range" min="-12" max="12" value="0" data-band="mid" aria-label="Mid">
+            </div>
+
+            <div class="eq-band">
+              <label>Treble</label>
+              <input type="range" min="-12" max="12" value="0" data-band="treble" aria-label="Treble">
+            </div>
+        </div>
+        <button id="controls-toggle-btn" class="icon-btn" aria-label="Hide controls">
+          <img id="controls-toggle-icon" src="icons/down.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+  </div>
+
+  <audio id="audioA" style="display:none;"></audio>
+  <div id="clear-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="clear-modal-title" aria-describedby="clear-modal-desc" aria-hidden="true">
+    <div class="modal-card">
+      <h2 id="clear-modal-title">Clear playlist?</h2>
+      <p id="clear-modal-desc">Choose what you want to clear.</p>
+      <div class="modal-actions">
+        <button id="clear-modal-clear" class="modal-btn modal-btn-primary" type="button">Clear Playlist</button>
+        <button id="clear-modal-full" class="modal-btn modal-btn-danger" type="button">Reset App</button>
+        <button id="clear-modal-cancel" class="modal-btn modal-btn-ghost" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("../sw.js");
+  }
+</script>
+</body>
+</html>
+
+
+

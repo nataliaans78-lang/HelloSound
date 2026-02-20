@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="play.svg"
+   id="svg26"
+   aria-hidden="true"
+   version="1.1"
+   viewBox="0 0 56 56"
+   height="44"
+   width="44">
+  <metadata
+     id="metadata30">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg26"
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:cy="28"
+     inkscape:cx="28"
+     inkscape:zoom="3.8566308"
+     showgrid="false"
+     id="namedview28"
+     inkscape:window-height="480"
+     inkscape:window-width="1004"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#111111"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs16">
+    <linearGradient
+       gradientTransform="translate(-4,-4)"
+       gradientUnits="userSpaceOnUse"
+       y2="60"
+       x2="60"
+       y1="4"
+       x1="4"
+       id="btnGradient">
+      <stop
+         id="stop2"
+         stop-color="#00d0ff"
+         offset="0%" />
+      <stop
+         id="stop4"
+         stop-color="#ffffff"
+         offset="50%" />
+      <stop
+         id="stop6"
+         stop-color="#4a00e0"
+         offset="100%" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="translate(-4,-4)"
+       gradientUnits="userSpaceOnUse"
+       y2="48"
+       x2="48"
+       y1="16"
+       x1="16"
+       id="iconGradient">
+      <stop
+         id="stop9"
+         stop-color="#00d0ff"
+         offset="0%" />
+      <stop
+         id="stop11"
+         stop-color="#ffffff"
+         offset="50%" />
+      <stop
+         id="stop13"
+         stop-color="#4a00e0"
+         offset="100%" />
+    </linearGradient>
+  </defs>
+  <rect
+     style="fill:url(#btnGradient)"
+     id="rect18"
+     opacity="0.92"
+     fill="url(#btnGradient)"
+     ry="14"
+     rx="14"
+     height="56"
+     width="56"
+     y="0"
+     x="0" />
+  <rect
+     id="rect20"
+     fill-opacity="0.65"
+     fill="#000000"
+     ry="13"
+     rx="13"
+     height="52"
+     width="52"
+     y="2"
+     x="2" />
+  <path
+     id="path22"
+     stroke-linecap="round"
+     stroke-width="3"
+     stroke-opacity="0.15"
+     stroke="#ffffff"
+     fill="none"
+     d="M 8,12 C 18,4 38,4 48,10" />
+  <!-- PLAY -->
+  <path
+     style="fill:url(#iconGradient)"
+     id="path24"
+     fill="url(#iconGradient)"
+     d="M 22,16 V 40 L 40,28 Z" />
+</svg>
+
+
+
