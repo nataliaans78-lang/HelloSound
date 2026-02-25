@@ -2,15 +2,15 @@
   <img src="docs/assets/banner.svg" alt="EchoGlow banner" width="85%">
 </p>
 
-## 🎧 Neon-themed Browser Audio Player
-Neon-themed browser audio player with drag & drop playlists, real-time canvas visualizer, EQ presets, autosave, and keyboard shortcuts.
+<h1 align="center">EchoGlow</h1>
+<p align="center">
+Neon-Themed Browser Audio Player with Real-Time Visualizer
+</p>
 
 <p align="center">
-  <img 
-    src="docs/assets/image/preview.gif" 
-    alt="EchoGlow preview"
-    width="60%"
-  />
+  <a href="https://github.com/nataliaans78-lang/EchoGlow/releases/latest/download/hello_demo.mp4">
+    ▶ Download Full MP4 Demo
+  </a>
 </p>
 
 ---
@@ -21,18 +21,15 @@ Neon-themed browser audio player with drag & drop playlists, real-time canvas vi
 
 ---
 
-## ✨ Features
-- Drag & drop audio files **and folders**
-- Playlist search
-- Canvas visualizer with neon glow
-- 3-band EQ (Bass / Mid / Treble) with presets + saved state
-- Playlist and player state persistence (IndexedDB + localStorage)
-- Clear modal with `Clear Playlist` and `Reset App`
-- Toast feedback for autosave and storage limits
-- Shuffle / Repeat
-- Mobile layout with a slide-down playlist panel
-- Keyboard shortcuts (play/pause, next/prev, seek, volume)
-- Service Worker registration (PWA-ready app shell)
+## 🎬 Preview
+
+<p align="center">
+  <img 
+    src="docs/assets/image/preview.gif" 
+    alt="EchoGlow preview"
+    width="60%"
+  />
+</p>
 
 ---
 
@@ -75,11 +72,39 @@ Neon-themed browser audio player with drag & drop playlists, real-time canvas vi
 
 ---
 
+## ✨ Features
+
+- Drag & drop audio files **and folders**
+- Real-time canvas visualizer with neon glow
+- 3-band EQ (Bass / Mid / Treble) with presets
+- Playlist search
+- Shuffle / Repeat
+- Playlist & player state persistence (IndexedDB + localStorage)
+- Clear modal (`Clear Playlist` / `Reset App`)
+- Toast feedback for autosave & storage limits
+- Keyboard shortcuts (play/pause, next/prev, seek, volume)
+- Mobile layout with slide-down playlist panel
+- Service Worker (PWA-ready app shell)
+
+---
+
 ## 🛠️ Tech Stack
+
 - HTML / CSS / Vanilla JS
-- Web Audio API (AudioContext + BiquadFilter EQ + Analyser)
-- IndexedDB + localStorage (optional persistence)
+- Web Audio API (AudioContext + BiquadFilter + Analyser)
+- IndexedDB + localStorage
 - Service Worker (offline-ready shell)
+
+---
+
+## 📦 Release
+
+Current version: **v1.0.0**
+
+Initial public release including:
+- Stable player build
+- UI refinements
+- Optimized MP4 demo preview
 
 ---
 
@@ -88,8 +113,8 @@ Neon-themed browser audio player with drag & drop playlists, real-time canvas vi
 ### Option A (quick)
 Open `docs/app/index.html` in your browser.
 
-### Option B (recommended — local server)
+### Option B (local server)
+
 ```bash
 cd docs
 python -m http.server 8000
-```
