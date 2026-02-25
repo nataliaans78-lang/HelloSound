@@ -2,17 +2,6 @@
   <img src="docs/assets/banner.svg" alt="EchoGlow banner" width="85%">
 </p>
 
-<h1 align="center">EchoGlow</h1>
-<p align="center">
-Neon-Themed Browser Audio Player with Real-Time Visualizer
-</p>
-
-<p align="center">
-  <a href="https://github.com/nataliaans78-lang/EchoGlow/releases/latest/download/hello_demo.mp4">
-    ▶ Download Full MP4 Demo
-  </a>
-</p>
-
 ---
 
 ## 🚀 Live Demo
@@ -29,6 +18,12 @@ Neon-Themed Browser Audio Player with Real-Time Visualizer
     alt="EchoGlow preview"
     width="60%"
   />
+</p>
+
+<p align="center">
+  <a href="https://github.com/nataliaans78-lang/EchoGlow/releases/latest/download/hello_demo.mp4">
+    ▶ Download Full MP4 Demo
+  </a>
 </p>
 
 ---
