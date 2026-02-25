@@ -1,9 +1,9 @@
 {
-  "name": "Hello Sound — Neon Audio Player",
-  "short_name": "HelloSound",
+  "name": "EchoGlow - Neon Audio Player",
+  "short_name": "EchoGlow",
   "description": "Neon-themed browser audio player with playlists, visualizer and EQ.",
-  "start_url": "/HelloSound/app/",
-  "scope": "/HelloSound/",
+  "start_url": "/EchoGlow/app/",
+  "scope": "/EchoGlow/",
   "display": "standalone",
   "background_color": "#15161a",
   "theme_color": "#15161a",
@@ -29,13 +29,13 @@
     {
       "name": "Open Player",
       "short_name": "Player",
-      "url": "/HelloSound/app/",
+      "url": "/EchoGlow/app/",
       "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Landing",
       "short_name": "Home",
-      "url": "/HelloSound/",
+      "url": "/EchoGlow/",
       "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]

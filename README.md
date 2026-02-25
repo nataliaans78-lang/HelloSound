@@ -1,5 +1,5 @@
 ﻿<p align="center">
-  <img src="docs/assets/banner.svg" alt="HelloSound banner" width="85%">
+  <img src="docs/assets/banner.svg" alt="EchoGlow banner" width="85%">
 </p>
 
 ## 🎧 Neon-themed Browser Audio Player
@@ -8,7 +8,7 @@ Neon-themed browser audio player with drag & drop playlists, real-time canvas vi
 <p align="center">
   <img 
     src="docs/assets/image/preview.gif" 
-    alt="HelloSound preview"
+    alt="EchoGlow preview"
     width="60%"
   />
 </p>

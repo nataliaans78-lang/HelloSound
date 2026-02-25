@@ -1,11 +1,11 @@
-const CACHE_NAME = "hellosound-v2";
+const CACHE_NAME = "echoglow-v2";
 const ASSETS = [
-  "/HelloSound/app/",
-  "/HelloSound/app/index.html",
-  "/HelloSound/manifest.webmanifest",
-  "/HelloSound/icons/icon-192.png",
-  "/HelloSound/icons/icon-512.png",
-  "/HelloSound/icons/icon-512-maskable.png",
+  "/EchoGlow/app/",
+  "/EchoGlow/app/index.html",
+  "/EchoGlow/manifest.webmanifest",
+  "/EchoGlow/icons/icon-192.png",
+  "/EchoGlow/icons/icon-512.png",
+  "/EchoGlow/icons/icon-512-maskable.png",
 ];
 
 self.addEventListener("install", (event) => {

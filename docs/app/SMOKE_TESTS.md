@@ -1,4 +1,4 @@
-# Hello Sound Smoke Tests
+# EchoGlow Smoke Tests
 
 ## Scope
 - Persistence restore (playlist, track index, playback time, shuffle/repeat, volume)
