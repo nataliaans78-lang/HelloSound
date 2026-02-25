@@ -16,8 +16,8 @@ Neon-themed browser audio player with drag & drop playlists, real-time canvas vi
 ---
 
 ## 🚀 Live Demo
-- **Landing page:** https://nataliaans78-lang.github.io/HelloSound/
-- **Player demo:** https://nataliaans78-lang.github.io/HelloSound/app/
+- **Landing page:** https://nataliaans78-lang.github.io/EchoGlow/
+- **Player demo:** https://nataliaans78-lang.github.io/EchoGlow/app/
 
 ---
 
