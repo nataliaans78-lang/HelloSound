@@ -44,8 +44,6 @@ let visualizerRunToken = 0;
 let visualizerDataArray = null;
 let visualizerBufferLength = 0;
 let visualizerFrameTick = 0;
-let cachedCenterGlow = null;
-let cachedCenterGlowKey = '';
 let audioMetricsWorker = null;
 let audioWorkerEnabled = false;
 let audioWorkerFrameTick = 0;
@@ -62,7 +60,7 @@ let clearModalLastFocus = null;
 let visualizerLastFrameAt = 0;
 const VISUALIZER_MOBILE_TARGET_FPS = 20;
 const VISUALIZER_DESKTOP_TARGET_FPS = 16;
-const VISUALIZER_MOBILE_MAX_BARS = 110;
+const VISUALIZER_MOBILE_MAX_BARS = 77;
 const VISUALIZER_DESKTOP_MAX_BARS = 132;
 const VISUALIZER_SHADOW_EVERY = 7;
 
@@ -809,28 +807,6 @@ function drawVisualizer(bufferLength, dataArray) {
     );
     const avgEnergy = Math.max(0, Math.min(1, (window.audioMetrics?.avgEnergy || 0) / 255));
     visualizerFrameTick += 1;
-
-    // Subtle neon bloom in the center (cache gradient; draw every fifth frame).
-    if (visualizerFrameTick % (isMobile ? 4 : 5) === 0) {
-        const mobileGlowFactor = isMobile ? 0.62 : 1;
-        const glowRadius = Math.min(canvas.width, canvas.height) * ((0.128 + avgEnergy * 0.053) * (isMobile ? 0.82 : 1));
-        const glowKey = `${canvas.width}x${canvas.height}`;
-        if (!cachedCenterGlow || cachedCenterGlowKey !== glowKey) {
-            cachedCenterGlowKey = glowKey;
-            cachedCenterGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, glowRadius);
-        }
-        const glow = cachedCenterGlow;
-        glow.addColorStop(0, `rgba(0, 220, 255, ${(0.15 + avgEnergy * 0.105) * mobileGlowFactor})`);
-        glow.addColorStop(0.6, `rgba(255, 0, 200, ${(0.098 + avgEnergy * 0.075) * mobileGlowFactor})`);
-        glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, glowRadius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-    }
 
     const tailStart = Math.floor(drawCount * 0.9);
     let tailMax = 0;
