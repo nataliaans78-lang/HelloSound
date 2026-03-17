@@ -448,6 +448,8 @@ body.is-playing::before {
   text-align: center;
   overflow: hidden;
   pointer-events: none;
+  cursor: pointer;
+  user-select: none;
   opacity: 1;
   transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease, opacity 0.28s ease;
   z-index: 2;

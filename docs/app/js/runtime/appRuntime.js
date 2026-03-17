@@ -25,6 +25,7 @@ const playlistClearBtn = document.getElementById('playlist-clear-btn');
 const playlistTools = document.getElementById('playlist-tools');
 const playlistToolsToggle = document.getElementById('playlist-tools-toggle');
 const playlistToolsPanel = document.getElementById('playlist-tools-panel');
+const playlistDropOverlay = document.getElementById('playlist-drop-overlay');
 const songSearchInput = document.getElementById('song-search');
 const songSearchClear = document.getElementById('song-search-clear');
 const songListEmpty = document.getElementById('song-list-empty');
@@ -1298,6 +1299,10 @@ fileUpload.addEventListener('change', function () {
 
 uploadBtnMobile?.addEventListener('click', e => {
     e.preventDefault();
+    fileUpload?.click();
+});
+
+playlistDropOverlay?.addEventListener('click', () => {
     fileUpload?.click();
 });
 
