@@ -437,10 +437,9 @@ body.is-playing::before {
   width: min(280px, calc(100% - 28px));
   min-height: 130px;
   padding: 14px 12px;
-  border: 1px dashed rgba(var(--grad-1-rgb), 0.45);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(6, 8, 12, 0.24), rgba(3, 5, 9, 0.28)) padding-box,
-              var(--accent-gradient) border-box;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -452,6 +451,7 @@ body.is-playing::before {
   opacity: 1;
   transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease, opacity 0.28s ease;
   z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
 }
 
 #playlist-drop-overlay::before {
@@ -459,8 +459,8 @@ body.is-playing::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(4, 6, 10, 0.18);
-  backdrop-filter: blur(1px);
+  background: transparent;
+  backdrop-filter: none;
   opacity: 1;
   transition: opacity 0.3s ease, background 0.3s ease;
 }
@@ -511,8 +511,8 @@ body.is-playing::before {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 0 10px rgba(var(--grad-1-rgb), 0.35);
+  color: rgba(255, 255, 255, 0.96);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
 }
 
 #playlist.has-songs #playlist-drop-overlay {
@@ -526,31 +526,35 @@ body.is-playing::before {
 @media (hover: hover) and (pointer: fine) {
   #playlist:not(.has-songs):not(.drag-active) #playlist-drop-overlay:hover {
     opacity: 0.9;
-    transform: translate(-50%, calc(-50% - 2px)) scale(1.022);
-    border-color: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 12px 28px rgba(0, 0, 0, 0.22), 0 0 16px rgba(255, 255, 255, 0.05);
+    transform: translate(-50%, calc(-50% - 1px)) scale(1.016);
+    border-color: rgba(var(--grad-1-rgb), 0.62);
+    box-shadow: 0 0 0 1px rgba(var(--grad-1-rgb), 0.28), 0 0 6px rgba(var(--grad-1-rgb), 0.16), 0 0 8px rgba(255, 255, 255, 0.06);
   }
 
   #playlist:not(.has-songs):not(.drag-active) #playlist-drop-overlay:hover::before {
     opacity: 1;
-    background: rgba(42, 46, 56, 0.22);
+    background: transparent;
   }
 
   #playlist:not(.has-songs):not(.drag-active) #playlist-drop-overlay:hover span {
     color: rgba(255, 255, 255, 0.98);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1), 0 0 14px rgba(var(--grad-1-rgb), 0.08);
+    text-shadow: 0 0 10px rgba(var(--grad-1-rgb), 0.26), 0 0 8px rgba(255, 255, 255, 0.12);
   }
 
-  #playlist:not(.has-songs):not(.drag-active) #playlist-drop-overlay:hover #drop-hint {
-    color: rgba(255, 255, 255, 0.92);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.04);
-  }
+#playlist:not(.has-songs):not(.drag-active) #playlist-drop-overlay:hover #drop-hint {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
+}
 
+}
+
+#playlist-drop-overlay #drop-hint {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 #playlist.drag-active #playlist-drop-overlay {
   border-color: var(--grad-1);
-  box-shadow: 0 0 0 1px rgba(var(--grad-1-rgb), 0.8), 0 0 18px rgba(var(--grad-3-rgb), 0.45);
+  box-shadow: 0 0 0 1px rgba(var(--grad-1-rgb), 0.7), 0 0 10px var(--accent-3), 0 0 8px #ffffff, 0 0 16px var(--accent-2);
 }
 
 #playlist.drag-active #playlist-drop-overlay::before {
