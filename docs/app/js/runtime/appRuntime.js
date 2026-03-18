@@ -802,6 +802,10 @@ function drawVisualizer(bufferLength, dataArray) {
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const isMobile = window.innerWidth <= 768;
+    const viewportScale = Math.min(window.innerWidth, window.innerHeight);
+    const barScale = isMobile
+        ? Math.max(0.82, Math.min(0.95, viewportScale / 780))
+        : Math.min(1.62, Math.max(1.12, viewportScale / 780));
     const drawCount = Math.min(
         bufferLength,
         isMobile ? VISUALIZER_MOBILE_MAX_BARS : VISUALIZER_DESKTOP_MAX_BARS
@@ -817,7 +821,10 @@ function drawVisualizer(bufferLength, dataArray) {
     const tailThreshold = tailMax * 0.9;
 
     for (let i = 0; i < drawCount; i += 1) {
-        const barHeight = dataArray[i];
+        const rawBarHeight = dataArray[i];
+        const motionBoost = 1 + avgEnergy * 0.22;
+        const waveBoost = 1 + Math.sin((visualizerFrameTick * 0.06) + i * 0.22) * 0.06;
+        const barHeight = rawBarHeight * motionBoost * waveBoost * barScale;
         ctx.save();
         ctx.translate(centerX, centerY);
         ctx.rotate(i + 4.184);
@@ -825,30 +832,40 @@ function drawVisualizer(bufferLength, dataArray) {
         const hue = (i * 5 + 190) % 360;
         const lightness = Math.min(70, 38 + barHeight * 0.32);
         const isTailHighlight = i >= tailStart && barHeight >= tailThreshold && tailMax > 0;
+        const normalizedBar = barHeight / 255;
+        const isBigBar = normalizedBar > 0.7;
+        const isMidHighBar = normalizedBar > 0.54 && (i + visualizerFrameTick) % 5 === 0;
+        const shouldGlow = isTailHighlight || isBigBar || isMidHighBar;
+        const shouldBoostGlow = isTailHighlight || (isBigBar && i % 3 === 0);
+        const capY = barHeight + barHeight / 2;
+        const capRadius = Math.max(isMobile ? 1.7 : 1.45, barHeight / (isMobile ? 10.5 : 11.5));
         ctx.strokeStyle = isTailHighlight ? 'rgba(255, 255, 255, 1)' : `hsl(${hue}, 100%, ${lightness}%)`;
-        if (i % VISUALIZER_SHADOW_EVERY === 0) {
-            ctx.shadowBlur = isMobile ? 30 : 22;
-            ctx.shadowColor = isTailHighlight ? 'rgba(255, 255, 255, 0.65)' : `hsla(${hue}, 100%, 60%, 0.5)`;
-        } else {
-            ctx.shadowBlur = 0;
-        }
-        ctx.lineWidth = isMobile ? 1.15 : 1;
+        ctx.shadowBlur = 0;
+        ctx.lineWidth = (isMobile ? 1.05 : 0.95) + normalizedBar * (isMobile ? 0.55 : 0.4);
 
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(0, barHeight);
-        ctx.arc(0, barHeight + barHeight / 2, barHeight / (isMobile ? 9 : 10), 0, Math.PI * 2);
+        ctx.arc(0, capY, barHeight / (isMobile ? 9 : 10), 0, Math.PI * 2);
         ctx.stroke();
 
-        if (i % VISUALIZER_SHADOW_EVERY === 0) {
-            ctx.lineWidth = isMobile ? 3.25 : 2.45;
-            ctx.shadowBlur = 0;
+        if (shouldGlow) {
             ctx.globalCompositeOperation = 'lighter';
-            ctx.strokeStyle = isTailHighlight ? 'rgba(255, 255, 255, 0.4)' : `hsla(${hue}, 100%, 70%, 0.85)`;
+            ctx.lineWidth = shouldBoostGlow ? (isMobile ? 2.75 : 2.22) : (isMobile ? 1.55 : 1.3);
+            ctx.shadowBlur = shouldBoostGlow
+                ? (isMobile ? 56 : 48)
+                : (isBigBar ? (isMobile ? 20 : 16) : (isMobile ? 12 : 10));
+            ctx.shadowColor = isTailHighlight
+                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.42)')
+                : `hsla(${hue}, 100%, 70%, ${shouldBoostGlow ? 1 : (isBigBar ? 0.28 : 0.18)})`;
+            ctx.strokeStyle = isTailHighlight
+                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.62)' : 'rgba(255, 255, 255, 0.26)')
+                : `hsla(${hue}, 100%, 76%, ${shouldBoostGlow ? 1 : (isBigBar ? 0.56 : 0.34)})`;
             ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(0, barHeight);
+            ctx.arc(0, capY, capRadius * (shouldBoostGlow ? 1.32 : 1.08), 0, Math.PI * 2);
             ctx.stroke();
+            ctx.shadowBlur = 0;
+            ctx.globalCompositeOperation = 'source-over';
         }
         ctx.restore();
     }
