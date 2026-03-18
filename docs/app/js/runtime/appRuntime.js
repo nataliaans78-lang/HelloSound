@@ -833,15 +833,43 @@ function drawVisualizer(bufferLength, dataArray) {
         const lightness = Math.min(70, 38 + barHeight * 0.32);
         const isTailHighlight = i >= tailStart && barHeight >= tailThreshold && tailMax > 0;
         const normalizedBar = barHeight / 255;
-        const isBigBar = normalizedBar > 0.7;
-        const isMidHighBar = normalizedBar > 0.54 && (i + visualizerFrameTick) % 5 === 0;
-        const shouldGlow = isTailHighlight || isBigBar || isMidHighBar;
-        const shouldBoostGlow = isTailHighlight || (isBigBar && i % 3 === 0);
+        const isTopBar = normalizedBar > 0.72;
+        const isHighBar = normalizedBar > 0.58;
+        const isAccentBar = normalizedBar > 0.46 && (i % 4 === 0 || i % 5 === 0);
+        const isLeftLowerAccentBar =
+            i >= Math.floor(drawCount * 0.1) &&
+            i <= Math.floor(drawCount * 0.18) &&
+            normalizedBar > 0.72 &&
+            hue >= 185 &&
+            hue <= 225;
+        const isRightLowerAccentBar =
+            i >= Math.floor(drawCount * 0.82) &&
+            i <= Math.floor(drawCount * 0.92) &&
+            normalizedBar > 0.72 &&
+            hue >= 185 &&
+            hue <= 225;
+        const shouldGlow = isTailHighlight || (isTopBar && (i % 3 === 0 || i % 4 === 0 || i % 5 === 0)) || (isHighBar && i % 5 === 0) || isAccentBar || isLeftLowerAccentBar || isRightLowerAccentBar;
+        const shouldBoostGlow = isTailHighlight || (isTopBar && (i % 4 === 0 || i % 6 === 0)) || isLeftLowerAccentBar || isRightLowerAccentBar;
         const capY = barHeight + barHeight / 2;
         const capRadius = Math.max(isMobile ? 1.7 : 1.45, barHeight / (isMobile ? 10.5 : 11.5));
         ctx.strokeStyle = isTailHighlight ? 'rgba(255, 255, 255, 1)' : `hsl(${hue}, 100%, ${lightness}%)`;
         ctx.shadowBlur = 0;
         ctx.lineWidth = (isMobile ? 1.05 : 0.95) + normalizedBar * (isMobile ? 0.55 : 0.4);
+        const prevBar = dataArray[(i - 1 + drawCount) % drawCount];
+        const nextBar = dataArray[(i + 1) % drawCount];
+        const prev2Bar = dataArray[(i - 2 + drawCount) % drawCount];
+        const next2Bar = dataArray[(i + 2) % drawCount];
+
+        const isNeighborOfTallBar =
+            (
+                barHeight < tailThreshold &&
+                (
+                    prevBar >= tailThreshold ||
+                    nextBar >= tailThreshold ||
+                    prev2Bar >= tailThreshold ||
+                    next2Bar >= tailThreshold
+                )
+            );
 
         ctx.beginPath();
         ctx.moveTo(0, 0);
@@ -849,24 +877,48 @@ function drawVisualizer(bufferLength, dataArray) {
         ctx.arc(0, capY, barHeight / (isMobile ? 9 : 10), 0, Math.PI * 2);
         ctx.stroke();
 
+        if (isNeighborOfTallBar) {
+            ctx.save();
+            ctx.shadowBlur = isMobile ? 14 : 10;
+            ctx.shadowColor = `hsla(${hue}, 100%, 72%, 0.28)`;
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.lineWidth = isMobile ? 1.4 : 1.1;
+            ctx.strokeStyle = `hsla(${hue}, 100%, 78%, 0.22)`;
+
+            ctx.beginPath();
+            ctx.arc(
+                0,
+                capY,
+                (barHeight / (isMobile ? 9 : 10)) * 1.18,
+                0,
+                Math.PI * 2
+            );
+            ctx.stroke();
+            ctx.restore();
+        }
+
         if (shouldGlow) {
             ctx.globalCompositeOperation = 'lighter';
-            ctx.lineWidth = shouldBoostGlow ? (isMobile ? 2.75 : 2.22) : (isMobile ? 1.55 : 1.3);
+            const isTopGlowBar = isTailHighlight || normalizedBar > 0.82;
+            ctx.lineWidth = shouldBoostGlow
+                ? (isMobile ? 3.15 : 2.55)
+                : (isMobile ? 1.9 : 1.55);
             ctx.shadowBlur = shouldBoostGlow
-                ? (isMobile ? 56 : 48)
-                : (isBigBar ? (isMobile ? 20 : 16) : (isMobile ? 12 : 10));
+                ? (isMobile ? 66 : 56)
+                : (isTopGlowBar ? (isMobile ? 34 : 26) : (isHighBar ? (isMobile ? 22 : 17) : (isMobile ? 14 : 11)));
             ctx.shadowColor = isTailHighlight
-                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.42)')
-                : `hsla(${hue}, 100%, 70%, ${shouldBoostGlow ? 1 : (isBigBar ? 0.28 : 0.18)})`;
+                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0.46)')
+                : `hsla(${hue}, 100%, 70%, ${shouldBoostGlow ? 1 : (isTopGlowBar ? 0.52 : (isHighBar ? 0.34 : 0.22))})`;
             ctx.strokeStyle = isTailHighlight
-                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.62)' : 'rgba(255, 255, 255, 0.26)')
-                : `hsla(${hue}, 100%, 76%, ${shouldBoostGlow ? 1 : (isBigBar ? 0.56 : 0.34)})`;
+                ? (shouldBoostGlow ? 'rgba(255, 255, 255, 0.72)' : 'rgba(255, 255, 255, 0.3)')
+                : `hsla(${hue}, 100%, 76%, ${shouldBoostGlow ? 1 : (isTopGlowBar ? 0.8 : (isHighBar ? 0.6 : 0.42))})`;
             ctx.beginPath();
-            ctx.arc(0, capY, capRadius * (shouldBoostGlow ? 1.32 : 1.08), 0, Math.PI * 2);
+            ctx.arc(0, capY, capRadius * (shouldBoostGlow ? 1.52 : (isTopGlowBar ? 1.24 : 1.12)), 0, Math.PI * 2);
             ctx.stroke();
             ctx.shadowBlur = 0;
             ctx.globalCompositeOperation = 'source-over';
         }
+
         ctx.restore();
     }
 }
