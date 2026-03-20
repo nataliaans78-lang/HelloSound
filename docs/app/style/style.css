@@ -1495,8 +1495,8 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   #playlist {
     position: fixed;
     top: -60vh;
-    left: 0;
-    width: 100%;
+    left: -2px;
+    width: calc(100% - 16px);
     height: 60vh;
     background: #333;
     border-radius: 0 0 16px 16px;
