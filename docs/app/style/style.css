@@ -1470,9 +1470,9 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls .controls #eq-btn {
-    width: 42px;
-    height: 42px;
-    margin-right: 5px;
+    width: calc(clamp(55px, 14.5vw, 40px) + 2px);
+    height: calc(clamp(55px, 14.5vw, 40px) + 2px);
+    margin-right: 3px;
   }
 
   /* HANDLE = always visible on mobile */
@@ -2050,6 +2050,7 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
 
   #audio-controls.eq-open #eq-panel {
     display: flex;
+    overflow: visible;
   }
 }
 
@@ -2099,6 +2100,11 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     height: clamp(37px, 9.8vw, 42px);
   }
 
+  #audio-controls .icon-btn img {
+    width: 35px;
+    height: 35px;
+  }
+
   #seek-bar,
   #volume-bar {
     margin: 3px 0;
@@ -2136,8 +2142,8 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls.eq-open #eq-panel {
-    width: calc(100vw - 16px);
-    max-width: calc(100vw - 16px);
+    width: calc(88vw + 20px);
+    max-width: calc(88vw + 20px);
     max-height: min(44vh, 300px);
     margin: 0 auto 6px;
     padding: clamp(5px, 1.6vw, 7px);
@@ -2222,10 +2228,11 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls.eq-open #eq-panel {
-    width: calc(100vw - 12px);
-    max-width: calc(100vw - 12px);
+    width: calc(88vw + 20px);
+    max-width: calc(88vw + 20px);
     max-height: min(44vh, 300px);
     margin: 0 auto 4px;
+    overflow: visible;
   }
 
   body:not(.controls-hidden) #controls-toggle-btn {
@@ -2257,11 +2264,6 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   .icon-btn {
     width: clamp(55px, 15.6vw, 60px);
     height: clamp(55px, 15.6vw, 60px);
-  }
-
-  #audio-controls .controls #eq-btn {
-    width: clamp(51px, 15.6vw, 62px);
-    height: clamp(51px, 15.6vw, 62px);
   }
 
   .icon-btn img {
@@ -2631,11 +2633,6 @@ body.modal-open {
     border-radius: 12px;
   }
 
-  #audio-controls .icon-btn img {
-    width: 30px;
-    height: 30px;
-  }
-
   #audio-controls #play-pause-btn,
   #audio-controls #shuffle-btn,
   #audio-controls #prev-btn,
@@ -2740,10 +2737,6 @@ body.modal-open {
 
   #audio-controls .controls {
     gap: 5px;
-  }
-
-  #audio-controls .controls #eq-btn {
-    margin-right: 3px;
   }
 
   .icon-btn:active,
