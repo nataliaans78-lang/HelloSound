@@ -44,9 +44,6 @@
           <div id="playlist-tools-panel" role="search" aria-label="Playlist search panel" aria-hidden="true">
             <div class="playlist-search">
               <input id="song-search" type="search" placeholder="Search tracks" aria-label="Search tracks" autocomplete="off">
-              <button id="song-search-clear" class="playlist-tool-btn playlist-tool-close" type="button" aria-label="Close search panel" title="Close search">
-                <img src="icons/down.svg" alt="" aria-hidden="true">
-              </button>
             </div>
           </div>
         </div>
@@ -85,14 +82,38 @@
             </div>
 
             <div class="eq-presets">
-              <label for="eq-preset-select">Preset</label>
-              <select id="eq-preset-select">
-                <option value="custom">Custom</option>
-                <option value="flat">Flat</option>
-                <option value="bass-boost">Bass Boost</option>
-                <option value="vocal">Vocal</option>
-                <option value="treble-boost">Treble Boost</option>
-              </select>
+              <label for="eq-preset-toggle">Preset</label>
+
+              <div class="eq-preset-dropdown" id="eq-preset-dropdown">
+                <button
+                  id="eq-preset-toggle"
+                  class="eq-preset-toggle"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="eq-preset-menu"
+                >
+                  <span id="eq-preset-label">Custom</span>
+                  <span class="eq-preset-caret" aria-hidden="true"></span>
+                </button>
+
+                <div id="eq-preset-menu" class="eq-preset-menu" role="listbox" aria-label="Equalizer preset">
+                  <button type="button" class="eq-preset-option is-selected" data-value="custom" role="option" aria-selected="true">Custom</button>
+                  <button type="button" class="eq-preset-option" data-value="flat" role="option" aria-selected="false">Flat</button>
+                  <button type="button" class="eq-preset-option" data-value="bass-boost" role="option" aria-selected="false">Bass Boost</button>
+                  <button type="button" class="eq-preset-option" data-value="vocal" role="option" aria-selected="false">Vocal</button>
+                  <button type="button" class="eq-preset-option" data-value="treble-boost" role="option" aria-selected="false">Treble Boost</button>
+                </div>
+
+                <select id="eq-preset-select" class="sr-only" tabindex="-1" aria-hidden="true">
+                  <option value="custom">Custom</option>
+                  <option value="flat">Flat</option>
+                  <option value="bass-boost">Bass Boost</option>
+                  <option value="vocal">Vocal</option>
+                  <option value="treble-boost">Treble Boost</option>
+                </select>
+              </div>
+
               <button id="eq-reset-btn" type="button">Reset</button>
             </div>
 

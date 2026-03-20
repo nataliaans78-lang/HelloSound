@@ -16,6 +16,63 @@
     constants: { EQ_PRESETS, EQ_STORAGE_KEY }
   } = context;
 
+  const presetDropdown = document.getElementById('eq-preset-dropdown');
+  const presetToggle = document.getElementById('eq-preset-toggle');
+  const presetLabel = document.getElementById('eq-preset-label');
+  const presetMenu = document.getElementById('eq-preset-menu');
+  const presetOptions = [...document.querySelectorAll('.eq-preset-option')];
+
+  function syncCustomPresetUI(value) {
+    const nextValue = value || 'custom';
+    const activeOption = presetOptions.find(option => option.dataset.value === nextValue)
+      || presetOptions.find(option => option.dataset.value === 'custom');
+
+    presetOptions.forEach(option => {
+      const isActive = option === activeOption;
+      option.classList.toggle('is-selected', isActive);
+      option.setAttribute('aria-selected', String(isActive));
+    });
+
+    if (presetLabel && activeOption) {
+      presetLabel.textContent = activeOption.textContent.trim();
+    }
+  }
+
+  function closePresetMenu() {
+    presetDropdown?.classList.remove('open');
+    presetDropdown?.classList.remove('opens-up');
+    presetToggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  function positionPresetMenu() {
+    if (!presetDropdown || !presetMenu || !presetToggle) return;
+
+    presetDropdown.classList.remove('opens-up');
+
+    const toggleRect = presetToggle.getBoundingClientRect();
+    const menuHeight = presetMenu.scrollHeight || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    const spaceBelow = viewportHeight - toggleRect.bottom;
+    const spaceAbove = toggleRect.top;
+    const gap = 8;
+    const shouldOpenUp = spaceBelow < menuHeight + gap && spaceAbove > spaceBelow;
+
+    presetDropdown.classList.toggle('opens-up', shouldOpenUp);
+  }
+
+  function openPresetMenu() {
+    positionPresetMenu();
+    presetDropdown?.classList.add('open');
+    presetToggle?.setAttribute('aria-expanded', 'true');
+  }
+
+  function togglePresetMenu() {
+    if (!presetDropdown || !presetToggle) return;
+    const isOpen = presetDropdown.classList.contains('open');
+    if (isOpen) closePresetMenu();
+    else openPresetMenu();
+  }
+
   function getCurrentEQSettings() {
     return {
       bass: parseFloat(eqSliders.find(slider => slider.dataset.band === 'bass')?.value ?? '0'),
@@ -47,6 +104,8 @@
     if (eqPresetSelect) {
       eqPresetSelect.value = EQ_PRESETS[preset] ? preset : 'custom';
     }
+
+    syncCustomPresetUI(EQ_PRESETS[preset] ? preset : 'custom');
 
     if (save) {
       saveEQState(EQ_PRESETS[preset] ? preset : 'custom');
@@ -91,6 +150,10 @@
     eqPanel?.classList.toggle('open', isOpen);
     eqBtn?.classList.toggle('active', isOpen);
 
+    if (!isOpen) {
+      closePresetMenu();
+    }
+
     syncEQMobileLayout();
     requestAnimationFrame(updateMobilePlaylistPush);
 
@@ -126,11 +189,13 @@
       if (eqPresetSelect) {
         eqPresetSelect.value = 'custom';
       }
+      syncCustomPresetUI('custom');
       saveEQState('custom');
     });
   });
 
   eqPresetSelect?.addEventListener('change', event => {
+    syncCustomPresetUI(event.target.value);
     const preset = event.target.value;
     const presetValues = EQ_PRESETS[preset];
     if (!presetValues) {
@@ -152,6 +217,40 @@
   eqCloseBtn?.addEventListener('click', () => {
     setEQState(false);
   });
+
+  presetToggle?.addEventListener('click', togglePresetMenu);
+
+  presetOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const value = option.dataset.value;
+      if (!eqPresetSelect) return;
+
+      eqPresetSelect.value = value;
+      eqPresetSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      closePresetMenu();
+    });
+  });
+
+  document.addEventListener('click', event => {
+    if (!presetDropdown || !presetMenu) return;
+    if (!presetDropdown.contains(event.target)) {
+      closePresetMenu();
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closePresetMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (presetDropdown?.classList.contains('open')) {
+      positionPresetMenu();
+    }
+  });
+
+  syncCustomPresetUI(eqPresetSelect?.value || 'custom');
   loadEQState();
   syncEQMobileLayout();
   window.addEventListener('resize', syncEQMobileLayout);

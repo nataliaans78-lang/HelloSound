@@ -40,7 +40,7 @@ export function initVisualizer(context) {
     if (typeof Worker === 'undefined') return;
 
     try {
-      state.audioMetricsWorker = new Worker('../../audioWorker.js');
+      state.audioMetricsWorker = new Worker(new URL('../../audioWorker.js', import.meta.url));
       state.audioWorkerEnabled = true;
       state.audioMetricsWorker.onmessage = event => {
         const next = event.data;
