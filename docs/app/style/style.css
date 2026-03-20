@@ -2043,7 +2043,6 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 }
 
-
 /* Extra mobile fit / scale */
 @media (max-width: 768px) {
   #audio-controls {
@@ -2335,6 +2334,12 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
 
 /* Desktop narrow (devtools resize, no mobile emulation) */
 @media (max-width: 1024px) and (min-width: 769px) {
+  canvas {
+    box-shadow:
+      0 0 calc(22px + (var(--reactive-bass) * 30px)) rgba(var(--grad-1-rgb), calc(var(--reactive-bloom) * 0.26)),
+      0 0 calc(14px + (var(--reactive-bloom) * 18px)) rgba(var(--grad-3-rgb), calc(var(--reactive-bloom) * 0.15));
+  }
+
   #playlist {
     width: clamp(240px, calc(30vw + 40px), 300px);
     min-width: 220px;
@@ -2346,24 +2351,33 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     max-width: 460px;
   }
 
+  #eq-panel,
+  #audio-controls.eq-open #eq-panel {
+    width: min(388px, calc(100vw - 22px));
+    max-width: min(388px, calc(100vw - 22px));
+    max-height: min(52vh, 332px);
+    padding: clamp(9px, 1.6vw, 12px);
+    gap: 8px;
+  }
+
   #audio-controls .controls #eq-btn {
-    width: 39px;
-    height: 39px;
-    margin-right: 10px;
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
   }
 
   .icon-btn {
-    width: 60px;
-    height: 60px;
+    width: 54px;
+    height: 54px;
   }
 
   .icon-btn img {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
   }
 
   #audio-controls .controls {
-    gap: 4px;
+    gap: 2px;
   }
 }
 
@@ -2380,6 +2394,12 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   #audio-controls .controls {
     gap: 1px;
     padding-right: 64px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  #audio-controls .controls {
+    padding-right: 68px;
   }
 }
 
