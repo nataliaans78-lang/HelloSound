@@ -152,7 +152,6 @@
   eqCloseBtn?.addEventListener('click', () => {
     setEQState(false);
   });
-
   loadEQState();
   syncEQMobileLayout();
   window.addEventListener('resize', syncEQMobileLayout);
