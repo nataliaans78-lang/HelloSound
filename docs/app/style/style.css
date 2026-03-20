@@ -2332,18 +2332,34 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   padding: 0;
 }
 
-/* Desktop narrow (devtools resize, no mobile emulation) */
-@media (max-width: 1024px) and (min-width: 769px) {
+/* Desktop narrow / short */
+@media (min-width: 769px) and (max-width: 1115px), (min-width: 769px) and (max-height: 665px) {
   canvas {
+    width: 96%;
+    height: 96%;
+    background:
+      radial-gradient(circle at 50% 46%, rgba(var(--grad-1-rgb), 0.045), transparent 54%),
+      radial-gradient(circle at 50% 48%, rgba(var(--grad-3-rgb), 0.028), transparent 62%),
+      #05070c;
     box-shadow:
       0 0 calc(22px + (var(--reactive-bass) * 30px)) rgba(var(--grad-1-rgb), calc(var(--reactive-bloom) * 0.26)),
       0 0 calc(14px + (var(--reactive-bloom) * 18px)) rgba(var(--grad-3-rgb), calc(var(--reactive-bloom) * 0.15));
+    transform: scale(clamp(1, calc(0.98 + 0.00012 * 100vw), 1.08));
   }
 
   #playlist {
     width: clamp(240px, calc(30vw + 40px), 300px);
     min-width: 220px;
     padding: 14px;
+  }
+
+  #playlist .title-container {
+    height: 90px;
+    margin-bottom: 8px;
+  }
+
+  .animated-text {
+    font-size: 41px;
   }
 
   #seek-bar {
@@ -2379,6 +2395,64 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   #audio-controls .controls {
     gap: 2px;
   }
+
+  #playlist-footer {
+    gap: 5px;
+  }
+
+  #playlist-footer #playlist-tools,
+  #playlist-footer #playlist-actions {
+    width: 25px;
+    min-width: 25px;
+    min-height: 25px;
+  }
+
+  #playlist-footer #fileupload-container,
+  #fileupload-container {
+    min-height: 30px;
+  }
+
+  .playlist-icon-btn {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 8px;
+  }
+
+  .playlist-icon-btn img {
+    width: 12px;
+    height: 12px;
+  }
+
+  #custom-file-upload {
+    min-height: 27px;
+    height: 27px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+  }
+
+  .song {
+    padding: 9px 7px;
+    gap: 7px;
+    margin-bottom: 5px;
+    grid-template-columns: 17px minmax(0, 1fr) 19px;
+  }
+
+  .song-title {
+    font-size: 12.5px;
+  }
+
+  .song-index {
+    font-size: 11px;
+  }
+
+  .song-remove-btn {
+    width: 21px;
+    height: 21px;
+    font-size: 15px;
+  }
 }
 
 /* Final controls alignment tuning */
@@ -2397,7 +2471,7 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1115px), (min-width: 769px) and (max-height: 665px) {
   #audio-controls .controls {
     padding-right: 68px;
   }
