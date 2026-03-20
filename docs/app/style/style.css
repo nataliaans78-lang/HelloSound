@@ -2015,21 +2015,34 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #eq-panel {
-    position: static;
-    transform: translate(0, 0);
-    width: min(420px, calc(100vw - 18px));
-    max-width: min(420px, calc(100vw - 18px));
-    max-height: min(46vh, 320px);
-    margin-top: clamp(6px, 1.5vh, 10px);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: min(420px, calc(100vw - 24px));
+    max-width: min(420px, calc(100vw - 24px));
+    max-height: min(56vh, 360px);
     border-radius: 12px;
+    padding: clamp(10px, 2vw, 14px);
     display: none;
     opacity: 1;
+    transform: none;
   }
 
   #audio-controls.eq-open #eq-panel {
     display: flex;
+    width: min(420px, calc(100vw - 24px));
+    max-width: min(420px, calc(100vw - 24px));
+    max-height: min(56vh, 360px);
+    padding: clamp(10px, 2vw, 14px);
+    gap: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
+
 
 /* Extra mobile fit / scale */
 @media (max-width: 768px) {
@@ -2089,8 +2102,7 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #eq-panel {
-    margin-top: 6px;
-    padding: 8px;
+    padding: clamp(10px, 2vw, 14px);
   }
 
   #audio-controls.eq-open {
@@ -2106,12 +2118,12 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls.eq-open #eq-panel {
-    width: min(310px, calc(100vw - 18px));
-    max-width: min(310px, calc(100vw - 18px));
-    max-height: min(44vh, 300px);
+    width: min(420px, calc(100vw - 28px));
+    max-width: min(420px, calc(100vw - 28px));
+    max-height: min(56vh, 360px);
     margin-top: 0;
-    padding: clamp(5px, 1.6vw, 7px);
-    gap: 6px;
+    padding: clamp(10px, 2vw, 14px);
+    gap: 10px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -2121,12 +2133,12 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls.eq-open #eq-panel .eq-panel-header h3 {
-    font-size: clamp(13px, 3.8vw, 15px);
+    font-size: clamp(17px, 4.6vw, 20px);
   }
 
   #audio-controls.eq-open #eq-panel #eq-close-btn {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   #audio-controls.eq-open #eq-panel #eq-close-btn img {
@@ -2135,46 +2147,46 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   .eq-presets {
-    grid-template-columns: 1fr;
-    gap: 4px;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
   }
 
   #audio-controls.eq-open #eq-panel .eq-presets label {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   #eq-preset-select,
   #eq-reset-btn {
-    width: 100%;
-    height: 30px;
+    width: auto;
+    height: 34px;
     font-size: 12px;
   }
 
   .eq-band {
-    gap: 5px;
+    gap: 10px;
   }
 
   #audio-controls.eq-open #eq-panel .eq-band label {
-    width: 42px;
-    font-size: 12px;
+    width: clamp(52px, 16vw, 64px);
+    font-size: clamp(13px, 3.4vw, 14px);
   }
 
   #audio-controls.eq-open #eq-panel input[type="range"] {
-    height: 2px;
+    height: 4px;
   }
 
   #audio-controls.eq-open #eq-panel input[type="range"]::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
   }
 }
 
 @media (max-width: 420px), (max-height: 740px) {
   #eq-panel {
-    width: min(340px, calc(100vw - 16px));
-    max-width: min(340px, calc(100vw - 16px));
-    max-height: min(42vh, 250px);
-    padding: 6px;
+    width: min(380px, calc(100vw - 18px));
+    max-width: min(380px, calc(100vw - 18px));
+    max-height: min(52vh, 320px);
+    padding: clamp(9px, 2vw, 12px);
   }
 
   #audio-controls.eq-open {
@@ -2184,9 +2196,9 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls.eq-open #eq-panel {
-    width: min(330px, calc(100vw - 12px));
-    max-width: min(330px, calc(100vw - 12px));
-    max-height: min(44vh, 300px);
+    width: min(380px, calc(100vw - 18px));
+    max-width: min(380px, calc(100vw - 18px));
+    max-height: min(52vh, 320px);
   }
 
   body:not(.controls-hidden) #controls-toggle-btn {
@@ -2804,3 +2816,6 @@ body.modal-open {
     color: var(--muted) !important;
   }
 }
+
+
+

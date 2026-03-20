@@ -103,7 +103,35 @@ export function initVisualizer(context) {
       isMobile ? VISUALIZER_MOBILE_MAX_BARS : VISUALIZER_DESKTOP_MAX_BARS
     );
     const avgEnergy = Math.max(0, Math.min(1, (window.audioMetrics?.avgEnergy || 0) / 255));
+    const centerGlowMix = Math.max(0, Math.min(1, state.reactiveBassLevel * 1.12 + avgEnergy * 0.24));
     state.visualizerFrameTick += 1;
+
+    if (centerGlowMix > 0.02) {
+      const innerRadius = (isMobile ? 32 : 42) + centerGlowMix * (isMobile ? 18 : 26);
+      const outerRadius = innerRadius * (isMobile ? 2.1 : 2.35);
+
+      const coreGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, innerRadius);
+      coreGlow.addColorStop(0, `hsla(198, 100%, 72%, ${0.22 + centerGlowMix * 0.16})`);
+      coreGlow.addColorStop(0.45, `hsla(214, 100%, 64%, ${0.12 + centerGlowMix * 0.12})`);
+      coreGlow.addColorStop(1, 'hsla(214, 100%, 50%, 0)');
+
+      const haloGlow = ctx.createRadialGradient(centerX, centerY, innerRadius * 0.24, centerX, centerY, outerRadius);
+      haloGlow.addColorStop(0, `hsla(258, 100%, 72%, ${0.10 + centerGlowMix * 0.10})`);
+      haloGlow.addColorStop(0.55, `hsla(232, 100%, 66%, ${0.06 + centerGlowMix * 0.08})`);
+      haloGlow.addColorStop(1, 'hsla(232, 100%, 50%, 0)');
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.fillStyle = haloGlow;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = coreGlow;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
 
     const tailStart = Math.floor(drawCount * 0.9);
     let tailMax = 0;

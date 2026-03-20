@@ -1,4 +1,4 @@
-export function initEqualizer(context) {
+﻿export function initEqualizer(context) {
   const {
     refs: {
       audioControls,
