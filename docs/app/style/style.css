@@ -1301,6 +1301,7 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     height: 93%;
     max-width: 88vw;
     max-height: 93vh;
+    box-shadow: none;
     transform: scale(clamp(0.84, calc(0.82 + 0.00018 * 100vw), 0.96));
   }
 

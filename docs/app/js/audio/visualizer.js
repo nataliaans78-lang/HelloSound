@@ -106,18 +106,18 @@ export function initVisualizer(context) {
     const centerGlowMix = Math.max(0, Math.min(1, state.reactiveBassLevel * 1.12 + avgEnergy * 0.24));
     state.visualizerFrameTick += 1;
 
-    if (centerGlowMix > 0.02) {
-      const innerRadius = (isMobile ? 32 : 42) + centerGlowMix * (isMobile ? 18 : 26);
-      const outerRadius = innerRadius * (isMobile ? 2.1 : 2.35);
+    if (!isMobile && centerGlowMix > 0.02) {
+      const innerRadius = 34 + centerGlowMix * 18;
+      const outerRadius = innerRadius * 1.95;
 
       const coreGlow = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, innerRadius);
-      coreGlow.addColorStop(0, `hsla(198, 100%, 72%, ${0.22 + centerGlowMix * 0.16})`);
-      coreGlow.addColorStop(0.45, `hsla(214, 100%, 64%, ${0.12 + centerGlowMix * 0.12})`);
+      coreGlow.addColorStop(0, `hsla(198, 100%, 72%, ${0.12 + centerGlowMix * 0.1})`);
+      coreGlow.addColorStop(0.45, `hsla(214, 100%, 64%, ${0.06 + centerGlowMix * 0.08})`);
       coreGlow.addColorStop(1, 'hsla(214, 100%, 50%, 0)');
 
       const haloGlow = ctx.createRadialGradient(centerX, centerY, innerRadius * 0.24, centerX, centerY, outerRadius);
-      haloGlow.addColorStop(0, `hsla(258, 100%, 72%, ${0.10 + centerGlowMix * 0.10})`);
-      haloGlow.addColorStop(0.55, `hsla(232, 100%, 66%, ${0.06 + centerGlowMix * 0.08})`);
+      haloGlow.addColorStop(0, `hsla(258, 100%, 72%, ${0.05 + centerGlowMix * 0.06})`);
+      haloGlow.addColorStop(0.55, `hsla(232, 100%, 66%, ${0.03 + centerGlowMix * 0.05})`);
       haloGlow.addColorStop(1, 'hsla(232, 100%, 50%, 0)');
 
       ctx.save();
@@ -167,16 +167,24 @@ export function initVisualizer(context) {
         normalizedBar > 0.72 &&
         hue >= 185 &&
         hue <= 225;
-      const shouldGlow = isTailHighlight ||
-        (isTopBar && (i % 3 === 0 || i % 4 === 0 || i % 5 === 0)) ||
-        (isHighBar && i % 5 === 0) ||
-        isAccentBar ||
-        isLeftLowerAccentBar ||
-        isRightLowerAccentBar;
-      const shouldBoostGlow = isTailHighlight ||
-        (isTopBar && (i % 4 === 0 || i % 6 === 0)) ||
-        isLeftLowerAccentBar ||
-        isRightLowerAccentBar;
+      const shouldGlow = isMobile
+        ? (isTailHighlight || (isTopBar && i % 6 === 0))
+        : (
+            isTailHighlight ||
+            (isTopBar && (i % 3 === 0 || i % 4 === 0 || i % 5 === 0)) ||
+            (isHighBar && i % 5 === 0) ||
+            isAccentBar ||
+            isLeftLowerAccentBar ||
+            isRightLowerAccentBar
+          );
+      const shouldBoostGlow = isMobile
+        ? isTailHighlight
+        : (
+            isTailHighlight ||
+            (isTopBar && (i % 4 === 0 || i % 6 === 0)) ||
+            isLeftLowerAccentBar ||
+            isRightLowerAccentBar
+          );
       const capY = barHeight + barHeight / 2;
       const capRadius = Math.max(isMobile ? 1.7 : 1.45, barHeight / (isMobile ? 10.5 : 11.5));
       ctx.strokeStyle = `hsl(${hue}, 100%, ${lightness}%)`;
@@ -198,15 +206,15 @@ export function initVisualizer(context) {
       ctx.arc(0, capY, barHeight / (isMobile ? 9 : 10), 0, Math.PI * 2);
       ctx.stroke();
 
-      if (isNeighborOfTallBar) {
+      if (!isMobile && isNeighborOfTallBar) {
         ctx.save();
-        ctx.shadowBlur = isMobile ? 14 : 10;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = `hsla(${hue}, 100%, 72%, 0.28)`;
         ctx.globalCompositeOperation = 'lighter';
-        ctx.lineWidth = isMobile ? 1.4 : 1.1;
+        ctx.lineWidth = 1.1;
         ctx.strokeStyle = `hsla(${hue}, 100%, 78%, 0.22)`;
         ctx.beginPath();
-        ctx.arc(0, capY, (barHeight / (isMobile ? 9 : 10)) * 1.18, 0, Math.PI * 2);
+        ctx.arc(0, capY, (barHeight / 10) * 1.18, 0, Math.PI * 2);
         ctx.stroke();
         ctx.restore();
       }
@@ -218,8 +226,8 @@ export function initVisualizer(context) {
           ? (isMobile ? 3.15 : 2.55)
           : (isMobile ? 1.9 : 1.55);
         ctx.shadowBlur = isTailHighlight
-          ? (isMobile ? 54 : 44)
-          : (isTopGlowBar ? (isMobile ? 30 : 22) : (isHighBar ? (isMobile ? 20 : 15) : (isMobile ? 12 : 9)));
+          ? (isMobile ? 22 : 56)
+          : (isTopGlowBar ? (isMobile ? 12 : 26) : (isMobile ? 0 : 11));
         ctx.shadowColor = `hsla(${hue}, 100%, 62%, ${shouldBoostGlow ? 0.95 : (isTopGlowBar ? 0.46 : (isHighBar ? 0.28 : 0.18))})`;
         ctx.strokeStyle = `hsla(${hue}, 100%, 74%, ${shouldBoostGlow ? 0.95 : (isTopGlowBar ? 0.72 : (isHighBar ? 0.52 : 0.36))})`;
         ctx.beginPath();

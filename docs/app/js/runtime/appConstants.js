@@ -57,8 +57,8 @@ export const MAX_PERSIST_TOTAL_BYTES = 350 * 1024 * 1024;
 export const VISUALIZER_CONSTANTS = {
   desktopMaxBars: 132,
   desktopTargetFps: 16,
-  mobileMaxBars: 77,
-  mobileTargetFps: 20,
+  mobileMaxBars: 44,
+  mobileTargetFps: 12,
   shadowEvery: 7
 };
 
