@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/EchoGlow/manifest.webmanifest">
+  <meta name="theme-color" content="#15161a">
   <link rel="icon" href="./favicon.png" type="image/png">
   <title>EchoGlow</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -235,5 +237,10 @@
     </div>
   </div>
   <script type="module" src="js/main.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/EchoGlow/sw.js");
+  }
+  </script>
 </body>
 </html>
