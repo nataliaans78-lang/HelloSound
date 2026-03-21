@@ -40,24 +40,20 @@
 
   function closePresetMenu() {
     presetDropdown?.classList.remove('open');
-    presetDropdown?.classList.remove('opens-up');
     presetToggle?.setAttribute('aria-expanded', 'false');
   }
 
   function positionPresetMenu() {
     if (!presetDropdown || !presetMenu || !presetToggle) return;
 
-    presetDropdown.classList.remove('opens-up');
-
     const toggleRect = presetToggle.getBoundingClientRect();
-    const menuHeight = presetMenu.scrollHeight || 0;
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-    const spaceBelow = viewportHeight - toggleRect.bottom;
-    const spaceAbove = toggleRect.top;
-    const gap = 8;
-    const shouldOpenUp = spaceBelow < menuHeight + gap && spaceAbove > spaceBelow;
+    const gap = 10;
 
-    presetDropdown.classList.toggle('opens-up', shouldOpenUp);
+    const spaceBelow = viewportHeight - toggleRect.bottom - gap;
+    const safeHeight = Math.max(90, Math.min(spaceBelow, 220));
+
+    presetMenu.style.setProperty('--eq-menu-max-height', `${safeHeight}px`);
   }
 
   function openPresetMenu() {

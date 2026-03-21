@@ -133,6 +133,11 @@ export function initPlaylist(context) {
       // ignore localStorage cleanup errors
     }
 
+    context.actions.applyEQSettings?.(context.constants.EQ_PRESETS.flat, { preset: 'flat' });
+    context.actions.setEQState?.(false);
+    context.actions.setControlsHidden?.(false);
+    context.actions.setPlaylistOpenState?.(false);
+
     state.isShuffling = false;
     state.isRepeating = false;
     context.refs.shuffleBtn.classList.remove('active');
@@ -146,6 +151,7 @@ export function initPlaylist(context) {
     }
     context.actions.setPlaylistToolsOpen?.(false);
     context.actions.updateSearchClearBtn?.();
+    document.body.classList.remove('is-playing');
 
     if (seekBar) {
       seekBar.value = 0;

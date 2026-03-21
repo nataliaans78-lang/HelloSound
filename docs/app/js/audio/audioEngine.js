@@ -93,6 +93,7 @@ export function initAudioEngine(context) {
     audioA.load();
     state.isPlaying = false;
     state.songIndex = 0;
+    document.body.classList.remove('is-playing');
     updatePlayPauseBtn();
   }
 

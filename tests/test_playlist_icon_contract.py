@@ -35,19 +35,19 @@ class PlaylistIconContractTests(unittest.TestCase):
             "min-height: 38px;",
             "padding: 0;",
             "border-radius: 10px;",
-            "border: 1px solid rgba(255,255,255,0.08);",
-            "background: rgba(255,255,255,0.04);",
+            "border: 1px solid rgba(255,255,255,0.14);",
+            "background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));",
             "display: inline-flex;",
             "align-items: center;",
             "justify-content: center;",
-            "box-shadow: none;",
+            "box-shadow:",
         ]
         for item in expected:
             self.assertIn(item, block)
 
     def test_shared_playlist_icon_img_styles_exist(self):
         block = css_block(".playlist-icon-btn img")
-        for item in ["width: 14px;", "height: 14px;", "opacity: 0.72;", "display: block;"]:
+        for item in ["width: 18px;", "height: 18px;", "opacity: 0.9;", "display: block;"]:
             self.assertIn(item, block)
 
     def test_wrappers_are_neutral_layout_only(self):

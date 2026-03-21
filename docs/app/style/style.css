@@ -1010,6 +1010,7 @@ body:not(.controls-hidden) #controls-toggle-btn {
 body:not(.controls-hidden) #controls-toggle-btn img {
   width: 19px;
   height: 19px;
+  transform: translateY(4px);
 }
 
 body.controls-hidden #controls-toggle-btn {
@@ -1170,8 +1171,8 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
 }
 
 #eq-icon {
-  width: 34px;
-  height: 34px;
+  width: 35px;
+  height: 35px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1219,8 +1220,6 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   box-shadow: var(--glow-soft);
   position: static;
   transform: none;
-  width: 39px;
-  height: 39px;
   margin-right: 10px;
 }
 
@@ -1239,10 +1238,6 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     width: 100%;
     justify-content: center;
     gap: 1px;
-  }
-
-  #audio-controls .controls #eq-btn {
-    margin-right: 10px;
   }
 }
 
@@ -1346,6 +1341,7 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   body:not(.controls-hidden) #controls-toggle-btn img {
     width: 18px;
     height: 18px;
+    transform: translateY(-2px);
   }
 
   body.controls-hidden #controls-toggle-btn {
@@ -1355,16 +1351,6 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     bottom: 12px;
     top: auto;
     transform: translateX(-50%);
-  }
-
-  .icon-btn img {
-    width: 24px;
-    height: 24px;
-  }
-
-  #eq-icon {
-    width: 35px;
-    height: 35px;
   }
 
   .icon-btn {
@@ -1420,8 +1406,8 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   }
 
   #audio-controls .controls #eq-btn {
-    width: calc(clamp(55px, 14.5vw, 40px) + 2px);
-    height: calc(clamp(55px, 14.5vw, 40px) + 2px);
+    width: calc(clamp(50px, 14.5vw, 40px) + 1px);
+    height: calc(clamp(50px, 14.5vw, 40px) + 1px);
     margin-right: 3px;
   }
 
@@ -1881,13 +1867,30 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
     0 14px 28px rgba(0,0,0,0.42),
     0 0 0 1px rgba(70, 170, 255, 0.05);
   z-index: 9999;
-  box-sizing: border-box;
   pointer-events: auto;
+  max-height: min(220px, var(--eq-menu-max-height, 220px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 208, 255, 0.35) transparent;
 }
 
-.eq-preset-dropdown.opens-up .eq-preset-menu {
-  top: auto;
-  bottom: calc(100% + 4px);
+.eq-preset-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.eq-preset-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.eq-preset-menu::-webkit-scrollbar-thumb {
+  background: rgba(0, 208, 255, 0.28);
+  border-radius: 999px;
+}
+
+.eq-preset-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 208, 255, 0.4);
 }
 
 .eq-preset-dropdown.open .eq-preset-menu {
@@ -2169,6 +2172,11 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   #audio-controls .icon-btn img {
     width: 35px;
     height: 35px;
+  }
+
+  #audio-controls #eq-icon {
+    width: 33px;
+    height: 33px;
   }
 
   #seek-bar,
@@ -2473,6 +2481,12 @@ body.controls-hidden #audio-controls > :not(#controls-toggle-btn) {
   margin-right: auto;
   transform: none;
   padding-right: 78px;
+}
+
+@media (min-width: 769px) {
+  #audio-controls .controls {
+    transform: translateX(2px);
+  }
 }
 
 @media (max-width: 768px) {
