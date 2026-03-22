@@ -13,17 +13,11 @@
 ## 🎬 Preview
 
 <p align="center">
-  <video
-    src="docs/assets/video/EchoGlow.webm"
+  <img
+    src="docs/assets/image/EchoGlow.gif"
+    alt="EchoGlow preview"
     width="60%"
-    autoplay
-    muted
-    loop
-    playsinline
-    controls
   >
-    Your browser does not support the video tag.
-  </video>
 </p>
 
 <p align="center">
