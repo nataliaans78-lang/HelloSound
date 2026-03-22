@@ -61,11 +61,12 @@
         width="100%"
       />
     </td>
-    <td valign="top" width="50%">
+    <td valign="middle" width="50%" align="center">
       <img
         src="docs/assets/image/ScreenShot_Mobile.png"
         alt="Mobile UI"
         width="100%"
+        style="display:block; margin: 10px auto;"
       />
     </td>
   </tr>
