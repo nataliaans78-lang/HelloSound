@@ -2852,18 +2852,19 @@ body.modal-open {
 
   /* 1. Sidebar / playlist trochę ciaśniejszy */
   #playlist {
-    width: clamp(190px, 17vw, 235px);
-    min-width: 190px;
-    padding: 14px 12px 12px;
+    width: clamp(188px, 16.6vw, 228px);
+    min-width: 188px;
+    padding: 12px 11px 11px;
   }
 
   .title-container {
-    height: 88px;
-    margin-bottom: 12px;
+    height: 84px;
+    margin-bottom: 10px;
   }
 
   .animated-text {
-    font-size: 42px;
+    font-size: 40px;
+    letter-spacing: 0.6px;
   }
 
   /* 2. Add Files trochę mniejszy */
@@ -2874,117 +2875,128 @@ body.modal-open {
 
   #fileupload-container {
     gap: 4px;
-    min-height: 40px;
+    min-height: 38px;
   }
 
   #playlist-footer #fileupload-container {
-    min-height: 40px;
+    min-height: 38px;
   }
 
-  .upload-btn {
-    min-height: 38px;
-    padding: 8px 12px;
-    font-size: 13px;
+  #custom-file-upload {
+    min-height: 36px;
+    height: 36px;
+    padding: 7px 11px;
+    font-size: 12px;
     border-radius: 10px;
   }
 
   /* 3. Ikonki przy Add Files / search / clear trochę mniejsze */
-  .playlist-icon-btn,
   #playlist-footer #playlist-actions,
-  #playlist-footer #playlist-tools {
-    width: 36px;
-    min-width: 36px;
-    height: 36px;
-    min-height: 36px;
+  #playlist-footer #playlist-tools,
+  #playlist-actions button,
+  #playlist-tools > #playlist-tools-toggle {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    min-height: 34px;
   }
 
   .playlist-icon-btn img {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 
   /* 4. Visualizer lekko mniejszy */
   #visualizer-container {
-    padding: clamp(6px, 0.5vw, 8px) clamp(10px, 1.8vw, 30px) clamp(10px, 1.2vw, 18px);
+    padding: 6px 14px 12px;
   }
 
+  canvas,
   #canvasA {
-    transform: scale(0.95);
+    transform: scale(1.08);
     transform-origin: center center;
   }
 
-  /* 5. Audio controls bardziej zwarte */
+  /* 5. Audio controls bardziej zwarte i trochę mniejsze */
   #audio-controls {
-    width: clamp(500px, 48vw, 760px);
+    width: clamp(480px, 46vw, 720px);
     padding: 8px;
     bottom: 8px;
+    backdrop-filter: blur(10px) saturate(112%);
+    -webkit-backdrop-filter: blur(10px) saturate(112%);
+  }
+
+  #audio-controls::before {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+      linear-gradient(180deg, rgba(var(--grad-1-rgb), 0.02), rgba(var(--grad-3-rgb), 0.014));
   }
 
   #audio-controls .controls {
     gap: 6px;
-    padding-right: 64px;
+    padding-right: 58px;
   }
 
   /* 6. Główne przyciski audio trochę mniejsze */
   .icon-btn {
-    width: 54px;
-    height: 54px;
-    min-width: 46px;
-    min-height: 46px;
+    width: 52px;
+    height: 52px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .icon-btn img {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
   #shuffle-btn,
   #prev-btn,
   #next-btn,
   #repeat-btn {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    min-height: 50px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
   }
 
   #shuffle-btn img,
   #prev-btn img,
   #next-btn img,
   #repeat-btn img {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   #play-pause-btn {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    min-height: 56px;
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
   }
 
   #play-pause-btn img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
 
   /* 7. EQ button i toggle też delikatnie mniejsze */
   #audio-controls .controls #eq-btn {
-    width: 36px;
-    height: 36px;
-    margin-right: 8px;
+    width: 34px;
+    height: 34px;
+    margin-right: 6px;
   }
 
   #controls-toggle-btn {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    min-height: 32px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
   }
 
   #controls-toggle-btn img {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
 
   /* 8. Seek/volume i time display odrobinę ciaśniej */
@@ -2997,11 +3009,5 @@ body.modal-open {
   #volume-bar {
     margin-top: 2px;
     margin-bottom: 2px;
-  }
-
-  /* 9. Playlist title ~5% mniejszy */
-  #playlist-title {
-    font-size: 0.95em;
-    margin-bottom: 6px;
   }
 }

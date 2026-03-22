@@ -41,15 +41,27 @@ export function initControls(context) {
     return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable;
   }
 
+  function getTitleArcMetrics() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if (width <= 768) {
+      return { radius: 140, startAngle: -29, endAngle: 29 };
+    }
+
+    if (width <= 1440 || height <= 900) {
+      return { radius: 170, startAngle: -32, endAngle: 32 };
+    }
+
+    return { radius: 188, startAngle: -34, endAngle: 34 };
+  }
+
   function buildArcTitle() {
     if (!animatedText) return;
     const text = animatedText.textContent.trim();
     animatedText.textContent = '';
 
-    const isMobile = window.innerWidth <= 768;
-    const radius = isMobile ? 140 : 188;
-    const startAngle = isMobile ? -29 : -34;
-    const endAngle = isMobile ? 29 : 34;
+    const { radius, startAngle, endAngle } = getTitleArcMetrics();
     const letters = text.length;
     const angleStep = (endAngle - startAngle) / Math.max(letters - 1, 1);
     const colors = [
