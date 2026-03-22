@@ -50,7 +50,15 @@ export function initControls(context) {
     }
 
     if (width <= 1440 || height <= 900) {
-      return { radius: 170, startAngle: -32, endAngle: 32 };
+      const widthScale = Math.min(width / 1440, 1);
+      const heightScale = Math.min(height / 900, 1);
+      const compactScale = Math.max(0.84, Math.min(widthScale, heightScale));
+
+      return {
+        radius: Math.round(188 * compactScale),
+        startAngle: -32,
+        endAngle: 32
+      };
     }
 
     return { radius: 188, startAngle: -34, endAngle: 34 };
