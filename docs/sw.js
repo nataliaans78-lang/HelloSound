@@ -1,11 +1,13 @@
-const CACHE_NAME = "echoglow-v4";
+const CACHE_NAME = "echoglow-v5";
+const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, "");
+const withScope = (path) => `${scopePath}${path}`;
 const ASSETS = [
-  "/EchoGlow/app/",
-  "/EchoGlow/app/index.html",
-  "/EchoGlow/manifest.webmanifest",
-  "/EchoGlow/icons/icon-192.png",
-  "/EchoGlow/icons/icon-512.png",
-  "/EchoGlow/icons/icon-512-maskable.png"
+  withScope("/app/"),
+  withScope("/app/index.html"),
+  withScope("/manifest.webmanifest"),
+  withScope("/icons/icon-192.png"),
+  withScope("/icons/icon-512.png"),
+  withScope("/icons/icon-512-maskable.png")
 ];
 
 self.addEventListener("install", (event) => {

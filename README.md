@@ -13,15 +13,21 @@
 ## 🎬 Preview
 
 <p align="center">
-  <img 
-    src="docs/assets/image/preview.gif" 
-    alt="EchoGlow preview"
+  <video
+    src="docs/assets/video/EchoGlow.webm"
     width="60%"
-  />
+    autoplay
+    muted
+    loop
+    playsinline
+    controls
+  >
+    Your browser does not support the video tag.
+  </video>
 </p>
 
 <p align="center">
-  <a href="https://github.com/nataliaans78-lang/EchoGlow/releases/latest/download/hello_demo.mp4">
+  <a href="https://github.com/nataliaans78-lang/EchoGlow/releases/latest/download/EchoGlow.mp4">
     ▶ Download Full MP4 Demo
   </a>
 </p>
@@ -59,7 +65,7 @@
       <img
         src="docs/assets/image/ScreenShot_Mobile.png"
         alt="Mobile UI"
-        height="340"
+        width="100%"
       />
     </td>
   </tr>
