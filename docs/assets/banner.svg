@@ -1,5 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="EchoGlow banner">
   <defs>
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 400 700;
+        src: url('https://fonts.gstatic.com/s/spacegrotesk/v17/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2') format('woff2');
+      }
+    </style>
+
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#06060b"/>
       <stop offset="0.55" stop-color="#0b0613"/>
@@ -19,6 +28,12 @@
       <stop offset="1" stop-color="#cf63ff"/>
     </linearGradient>
 
+    <radialGradient id="bassGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="rgba(120,247,255,0.28)"/>
+      <stop offset="0.45" stop-color="rgba(88,108,255,0.16)"/>
+      <stop offset="1" stop-color="rgba(181,77,255,0)"/>
+    </radialGradient>
+
     <filter id="miniGlow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="0.9" result="blur"/>
       <feMerge>
@@ -27,114 +42,181 @@
       </feMerge>
     </filter>
 
-    <filter id="waveGlow" x="-25%" y="-25%" width="150%" height="150%">
-      <feGaussianBlur stdDeviation="1.4" result="blur"/>
+    <filter id="waveGlowStrong" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
+    <filter id="trailGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(140,150,255,0.06)" stroke-width="1"/>
+    </pattern>
+
     <style>
       .title {
-        font: 700 64px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 1.1;
         letter-spacing: .6px;
-        filter: drop-shadow(0 0 3px rgba(124,247,255,0.15));
-        animation: titlePulse 5.6s ease-in-out infinite;
+        animation: glow 5s infinite ease-in-out;
       }
 
-      @keyframes titlePulse {
-        0%,100% {
-          opacity: .96;
-          filter: drop-shadow(0 0 3px rgba(124,247,255,0.12));
-        }
-        50% {
-          opacity: 1;
-          filter: drop-shadow(0 0 7px rgba(124,247,255,0.22));
-        }
+      @keyframes glow {
+        0%,100% { opacity:.92; }
+        50% { opacity:1; }
       }
 
       .sub {
-        font: 500 20px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        opacity: .9;
-        letter-spacing: .3px;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.2;
+        opacity:.92;
+        letter-spacing:.3px;
       }
 
       .wave {
-        fill: none;
-        stroke: url(#neonStroke);
-        stroke-width: 2;
-        stroke-linecap: round;
-        opacity: .9;
+        fill:none;
+        stroke:url(#neonStroke);
+        stroke-width:2.6;
+        stroke-linecap:round;
+        opacity:.98;
       }
 
-      @keyframes drift {
-        0%   { transform: translateX(-10px); opacity: .48; }
-        50%  { opacity: .98; }
-        100% { transform: translateX(10px); opacity: .48; }
+      @keyframes drift{
+        0%   { transform:translateX(-8px); opacity:.72; }
+        50%  { opacity:1; }
+        100% { transform:translateX(8px); opacity:.72; }
       }
 
-      .w1 { animation: drift 4.4s infinite alternate; }
-      .w2 { animation: drift 5s infinite alternate; }
-      .w3 { animation: drift 5.8s infinite alternate; }
+      .w1 { animation: drift 6s infinite alternate ease-in-out; }
+      .w2 { animation: drift 7s infinite alternate ease-in-out; }
+      .w3 { animation: drift 8s infinite alternate ease-in-out; }
 
-      .bar {
-        fill: url(#neonStroke);
+      .bar{
+        fill:url(#neonStroke);
         transform-box: fill-box;
-        transform-origin: center;
-        filter: url(#miniGlow);
+        transform-origin:center;
       }
 
-      .b1 { animation: eq1 3.8s infinite ease-in-out; animation-delay: -0.0s; }
-      .b2 { animation: eq2 4.0s infinite ease-in-out; animation-delay: -0.2s; }
-      .b3 { animation: eq3 4.2s infinite ease-in-out; animation-delay: -0.4s; }
-      .b4 { animation: eq4 4.4s infinite ease-in-out; animation-delay: -0.6s; }
-      .b5 { animation: eq5 4.6s infinite ease-in-out; animation-delay: -0.8s; }
-      .b6 { animation: eq6 4.4s infinite ease-in-out; animation-delay: -1.0s; }
-      .b7 { animation: eq7 4.2s infinite ease-in-out; animation-delay: -0.8s; }
-      .b8 { animation: eq8 4.0s infinite ease-in-out; animation-delay: -0.6s; }
-      .b9 { animation: eq9 3.8s infinite ease-in-out; animation-delay: -0.4s; }
+      .b1{animation:waveEq 4.8s infinite ease-in-out}
+      .b2{animation:waveEq 4.8s infinite ease-in-out -.3s}
+      .b3{animation:waveEq 4.8s infinite ease-in-out -.6s}
+      .b4{animation:waveEq 4.8s infinite ease-in-out -.9s}
+      .b5{animation:waveEq 4.8s infinite ease-in-out -1.2s}
+      .b6{animation:waveEq 4.8s infinite ease-in-out -1.5s}
+      .b7{animation:waveEq 4.8s infinite ease-in-out -1.8s}
+      .b8{animation:waveEq 4.8s infinite ease-in-out -2.1s}
+      .b9{animation:waveEq 4.8s infinite ease-in-out -2.4s}
 
-      @keyframes eq1 { 0%,100%{transform:scaleY(.96)} 50%{transform:scaleY(1.04)} }
-      @keyframes eq2 { 0%,100%{transform:scaleY(.94)} 50%{transform:scaleY(1.08)} }
-      @keyframes eq3 { 0%,100%{transform:scaleY(.92)} 50%{transform:scaleY(1.12)} }
-      @keyframes eq4 { 0%,100%{transform:scaleY(.90)} 50%{transform:scaleY(1.16)} }
-      @keyframes eq5 { 0%,100%{transform:scaleY(.88)} 50%{transform:scaleY(1.20)} }
-      @keyframes eq6 { 0%,100%{transform:scaleY(.92)} 50%{transform:scaleY(1.10)} }
-      @keyframes eq7 { 0%,100%{transform:scaleY(.88)} 50%{transform:scaleY(1.20)} }
-      @keyframes eq8 { 0%,100%{transform:scaleY(.90)} 50%{transform:scaleY(1.16)} }
-      @keyframes eq9 { 0%,100%{transform:scaleY(.92)} 50%{transform:scaleY(1.12)} }
-
-      .spark  { animation: twinkle 2.8s ease-in-out infinite; }
-      .spark2 { animation: twinkle 4.1s ease-in-out infinite; }
-      .spark3 { animation: twinkle 3.5s ease-in-out infinite; }
-
-      @keyframes twinkle {
-        0%,100% { opacity: .16; transform: scale(.88); }
-        50%     { opacity: .95; transform: scale(1.18); }
+      @keyframes waveEq{
+        0%,100%{transform:scaleY(.95)}
+        50%{transform:scaleY(1.18)}
       }
 
-      .s2  { animation-delay: -.9s; }
-      .s4  { animation-delay: -.5s; }
-      .s5  { animation-delay: -1.8s; }
-      .s6  { animation-delay: -.7s; }
-      .s7  { animation-delay: -1.1s; }
-      .s9  { animation-delay: -1.6s; }
-      .s10 { animation-delay: -.8s; }
-      .s11 { animation-delay: -1.9s; }
-      .s13 { animation-delay: -1.2s; }
-      .s17 { animation-delay: -.45s; }
-      .s18 { animation-delay: -1.05s; }
-      .s20 { animation-delay: -.25s; }
-      .s21 { animation-delay: -1.65s; }
-      .s22 { animation-delay: -.95s; }
-      .s23 { animation-delay: -1.25s; }
+      .orbitBase{
+        fill:none;
+        stroke:url(#neonStroke);
+        stroke-width:2;
+        opacity:.22;
+      }
+
+      .orbitTrail{
+        fill:none;
+        stroke:url(#neonStroke);
+        stroke-width:3;
+        stroke-linecap:round;
+        stroke-dasharray:40 900;
+        animation:trail 4s linear infinite;
+        filter:url(#trailGlow);
+        opacity:.95;
+      }
+
+      .orbitTrail2{
+        fill:none;
+        stroke:url(#ringGrad);
+        stroke-width:2;
+        stroke-linecap:round;
+        stroke-dasharray:18 900;
+        stroke-dashoffset:220;
+        animation:trail2 6.2s linear infinite;
+        filter:url(#trailGlow);
+        opacity:.7;
+      }
+
+      @keyframes trail{
+        to{stroke-dashoffset:-1000}
+      }
+
+      @keyframes trail2{
+        to{stroke-dashoffset:-760}
+      }
+
+      .spark{
+        animation:twinkle 4s infinite ease-in-out;
+        filter:url(#miniGlow);
+      }
+
+      .spark2{
+        animation:twinkle 5.2s infinite ease-in-out;
+        filter:url(#miniGlow);
+      }
+
+      .spark3{
+        animation:twinkle 4.6s infinite ease-in-out;
+        filter:url(#miniGlow);
+      }
+
+      @keyframes twinkle{
+        0%,100%{opacity:.14; transform:scale(.9)}
+        50%{opacity:.9; transform:scale(1.18)}
+      }
+
+      .s1{animation-delay:-.2s;}
+      .s2{animation-delay:-.9s;}
+      .s3{animation-delay:-1.4s;}
+      .s4{animation-delay:-.5s;}
+      .s5{animation-delay:-1.8s;}
+      .s6{animation-delay:-.7s;}
+      .s7{animation-delay:-1.1s;}
+      .s8{animation-delay:-.35s;}
+      .s9{animation-delay:-1.6s;}
+      .s10{animation-delay:-.8s;}
+      .s11{animation-delay:-1.9s;}
+      .s12{animation-delay:-.6s;}
+      .s13{animation-delay:-1.2s;}
+      .s14{animation-delay:-.95s;}
+      .s15{animation-delay:-1.45s;}
+      .s16{animation-delay:-.75s;}
+      .s17{animation-delay:-.45s;}
+      .s18{animation-delay:-1.05s;}
+      .s19{animation-delay:-.55s;}
+      .s20{animation-delay:-.25s;}
+      .s21{animation-delay:-1.65s;}
+      .s22{animation-delay:-.95s;}
+      .s23{animation-delay:-1.25s;}
+      .s24{animation-delay:-.85s;}
+      .s25{animation-delay:-1.35s;}
+      .s26{animation-delay:-.4s;}
     </style>
   </defs>
 
   <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect width="1200" height="320" fill="url(#grid)"/>
 
-  <g filter="url(#waveGlow)">
+  <!-- fale z blur -->
+  <g filter="url(#waveGlowStrong)">
     <path class="wave w1" d="M80 210 C 170 170,260 250,350 210 S530 170,620 210 S800 250,890 210 S1070 170,1160 210"/>
     <path class="wave w2" d="M80 235 C 170 195,260 275,350 235 S530 195,620 235 S800 275,890 235 S1070 195,1160 235"/>
     <path class="wave w3" d="M80 185 C 170 145,260 225,350 185 S530 145,620 185 S800 225,890 185 S1070 145,1160 185"/>
@@ -144,9 +226,17 @@
     <ellipse cx="140" cy="130" rx="115" ry="108"
       fill="none" stroke="url(#ringGrad)" stroke-width="4"/>
 
-    <ellipse cx="140" cy="130" rx="150" ry="48"
-      fill="none" stroke="url(#neonStroke)" stroke-width="2"
-      opacity=".3" transform="rotate(-18 140 130)"/>
+    <!-- przywrócona orbita -->
+    <ellipse class="orbitBase" cx="140" cy="130" rx="150" ry="48"
+      transform="rotate(-18 140 130)"/>
+
+    <ellipse class="orbitTrail" cx="140" cy="130" rx="150" ry="48"
+      transform="rotate(-18 140 130)"/>
+
+    <ellipse class="orbitTrail2" cx="140" cy="130" rx="150" ry="48"
+      transform="rotate(-18 140 130)"/>
+
+    <ellipse cx="140" cy="130" rx="92" ry="78" fill="url(#bassGlow)"/>
 
     <g>
       <rect class="bar b1" x="50"  y="117" width="12" height="26" rx="6"/>
@@ -160,27 +250,37 @@
       <rect class="bar b9" x="218" y="117" width="12" height="26" rx="6"/>
     </g>
 
-    <g id="particles">
-      <g fill="#7cf7ff" filter="url(#miniGlow)">
-        <circle class="spark2 s2"  cx="44"  cy="58"  r="2.1"/>
-        <circle class="spark s4"   cx="78"  cy="82"  r="1.2"/>
-        <circle class="spark2 s5"  cx="96"  cy="32"  r="1.4"/>
-        <circle class="spark3 s6"  cx="110" cy="214" r="1.5"/>
-        <circle class="spark s7"   cx="66"  cy="188" r="1.3"/>
-        <circle class="spark3 s9"  cx="196" cy="24"  r="1.3"/>
-        <circle class="spark s10"  cx="214" cy="198" r="1.8"/>
-        <circle class="spark2 s11" cx="226" cy="46"  r="2.1"/>
-        <circle class="spark s13"  cx="258" cy="138" r="1.2"/>
-      </g>
+    <!-- przywrócone particles -->
+    <g fill="#7cf7ff">
+      <circle class="spark2 s1"  cx="44"  cy="58"  r="2.1"/>
+      <circle class="spark s2"   cx="78"  cy="82"  r="1.2"/>
+      <circle class="spark2 s3"  cx="96"  cy="32"  r="1.4"/>
+      <circle class="spark3 s4"  cx="110" cy="214" r="1.5"/>
+      <circle class="spark s5"   cx="66"  cy="188" r="1.3"/>
+      <circle class="spark3 s6"  cx="196" cy="24"  r="1.3"/>
+      <circle class="spark s7"   cx="214" cy="198" r="1.8"/>
+      <circle class="spark2 s8"  cx="226" cy="46"  r="2.1"/>
+      <circle class="spark s9"   cx="258" cy="138" r="1.2"/>
+      <circle class="spark2 s10" cx="54"  cy="122" r="1.1"/>
+      <circle class="spark s11"  cx="88"  cy="210" r="1.0"/>
+      <circle class="spark3 s12" cx="152" cy="18"  r="1.2"/>
+      <circle class="spark s13"  cx="236" cy="72"  r="1.1"/>
+      <circle class="spark2 s14" cx="248" cy="156" r="1.4"/>
+    </g>
 
-      <g fill="#d97cff" filter="url(#miniGlow)">
-        <circle class="spark2 s17" cx="36"  cy="150" r="1.3"/>
-        <circle class="spark3 s18" cx="124" cy="40"  r="1.2"/>
-        <circle class="spark2 s20" cx="182" cy="208" r="1.6"/>
-        <circle class="spark3 s21" cx="204" cy="82"  r="1.5"/>
-        <circle class="spark s22"  cx="236" cy="170" r="1.8"/>
-        <circle class="spark2 s23" cx="240" cy="112" r="2.1"/>
-      </g>
+    <g fill="#d97cff">
+      <circle class="spark2 s15" cx="36"  cy="150" r="1.3"/>
+      <circle class="spark3 s16" cx="124" cy="40"  r="1.2"/>
+      <circle class="spark2 s17" cx="182" cy="208" r="1.6"/>
+      <circle class="spark3 s18" cx="204" cy="82"  r="1.5"/>
+      <circle class="spark s19"  cx="236" cy="170" r="1.8"/>
+      <circle class="spark2 s20" cx="240" cy="112" r="2.1"/>
+      <circle class="spark s21"  cx="58"  cy="96"  r="1.0"/>
+      <circle class="spark3 s22" cx="100" cy="146" r="1.1"/>
+      <circle class="spark2 s23" cx="168" cy="52"  r="1.3"/>
+      <circle class="spark s24"  cx="210" cy="222" r="1.2"/>
+      <circle class="spark3 s25" cx="252" cy="96"  r="1.0"/>
+      <circle class="spark2 s26" cx="134" cy="226" r="1.2"/>
     </g>
   </g>
 
