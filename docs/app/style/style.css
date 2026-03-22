@@ -2850,6 +2850,13 @@ body.modal-open {
 @media (min-width: 769px) and (max-width: 1440px),
        (min-width: 769px) and (max-height: 900px) {
 
+  :root {
+    --scene-surface:
+      radial-gradient(circle at 50% 50%, rgba(var(--grad-1-rgb), 0.035), transparent 38%),
+      radial-gradient(circle at 50% 50%, rgba(var(--grad-3-rgb), 0.022), transparent 44%),
+      #05070c;
+  }
+
   /* 1. Sidebar / playlist trochę ciaśniejszy */
   #playlist {
     flex: 0 0 clamp(188px, 16.6vw, 228px);
