@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,18 +14,14 @@
 </head>
 <body>
   <div class="bg-orbs" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="brand" href="#top">
-      <span class="brand-mark"></span>
-      <span>EchoGlow</span>
-    </a>
+    <a class="brand" href="#bg-orbs">EchoGlow</a>
     <nav class="site-nav">
-      <a href="#features">Interface</a>
+      <a href="#features">Features</a>
       <a href="#demo">Demo</a>
-      <a href="#how">Flow</a>
-      <a href="#stack">Stack</a>
+      <a href="#how">How it works</a>
+      <a href="#stack">Tech stack</a>
       <a href="#contact" data-open-contact>Contact</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -35,188 +31,132 @@
   </header>
 
   <main id="top">
-    <section class="hero section-shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Reactive neon audio player</p>
-        <h1>Landing page aligned with the same visualizer DNA as the app itself.</h1>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Neon audio player</p>
+        <h1>EchoGlow</h1>
         <p class="hero-sub">
-          EchoGlow is not a flat product page anymore. The landing now mirrors the player mood:
-          dark scene, bloom lighting, control-surface cards and a stronger sense of motion.
+          Visualizer + playlist + EQ in a single, responsive web app. Drop your tracks, sculpt the sound,
+          and watch the glow react to every beat.
         </p>
         <div class="hero-cta">
-          <a class="primary-btn" href="./app/">Open Player</a>
-          <a class="secondary-btn" href="https://github.com/nataliaans78-lang/EchoGlow" target="_blank" rel="noreferrer">View Source</a>
+          <a class="primary-btn" href="./app/">Open Demo</a>
+          <a class="secondary-btn" href="https://github.com/nataliaans78-lang/EchoGlow" target="_blank" rel="noreferrer">View on GitHub</a>
         </div>
         <div class="hero-meta">
           <span>Offline-ready</span>
-          <span>Visualizer-led UI</span>
-          <span>Playlist + EQ + search</span>
+          <span>Instant playlist</span>
+          <span>Visual EQ</span>
         </div>
       </div>
-
-      <div class="hero-stage">
-        <div class="stage-shell">
-          <div class="stage-header">
-            <span class="stage-pill">LIVE SCENE</span>
-            <a class="stage-link" href="./app/">Launch app</a>
+      <div class="hero-card">
+        <img src="assets/image/ScreenShot_1.png" alt="EchoGlow preview placeholder" />
+        <div class="hero-card-footer">
+          <div>
+            <p class="card-title">Live spectrum + neon UI</p>
           </div>
-
-          <div class="stage-screen">
-            <div class="stage-halo"></div>
-            <div class="stage-ring"></div>
-            <div class="signal-bars" aria-hidden="true">
-              <span style="--bar-height: 26%"></span>
-              <span style="--bar-height: 38%"></span>
-              <span style="--bar-height: 54%"></span>
-              <span style="--bar-height: 74%"></span>
-              <span style="--bar-height: 92%"></span>
-              <span style="--bar-height: 68%"></span>
-              <span style="--bar-height: 48%"></span>
-              <span style="--bar-height: 34%"></span>
-            </div>
-            <img class="stage-shot" src="assets/image/ScreenShot_1.png" alt="EchoGlow player interface preview">
-          </div>
-
-          <div class="stage-footer">
-            <div class="stage-stat">
-              <span>Mode</span>
-              <strong>Visualizer</strong>
-            </div>
-            <div class="stage-stat">
-              <span>Storage</span>
-              <strong>IndexedDB</strong>
-            </div>
-            <div class="stage-stat">
-              <span>Playback</span>
-              <strong>Local-first</strong>
-            </div>
-          </div>
+          <a class="chip" href="./app/">Launch</a>
         </div>
       </div>
     </section>
 
-    <section id="features" class="section section-shell">
+    <section id="features" class="section">
       <div class="section-head">
-        <p class="section-kicker">Interface</p>
-        <h2>Every section now borrows the player’s darker, more reactive surface language.</h2>
-        <p>The goal is simple: when someone lands here, it should feel like the app already started.</p>
+        <h2>Features</h2>
+        <p>Everything you need for a sleek listening session, without leaving the browser.</p>
       </div>
 
-      <div class="feature-layout">
-        <article class="feature-card feature-card-large">
-          <p class="card-kicker">Visualizer Surface</p>
-          <h3>The hero behaves like a player stage, not a generic product banner.</h3>
-          <p>Concentric glow, neon bars, tighter chrome and a framed screenshot make the first fold feel connected to the actual interface.</p>
-          <img src="assets/image/ScreenShot_Mobile.png" alt="Mobile EchoGlow preview">
-        </article>
-
+      <div class="feature-grid">
         <article class="feature-card">
-          <p class="card-kicker">Playlist DNA</p>
-          <h3>Panels feel like control modules.</h3>
-          <p>Cards use denser contrast, softer borders and the same neon edge treatment as the player shell.</p>
+          <h3>Drag & Drop playlist</h3>
+          <p>Drop audio files or folders and start playing instantly.</p>
         </article>
-
         <article class="feature-card">
-          <p class="card-kicker">Motion Mood</p>
-          <h3>Glow and gradients do the branding.</h3>
-          <p>No flat sections. Each block keeps subtle bloom so the page feels powered, not static.</p>
+          <h3>Reactive visualizer</h3>
+          <p>Canvas-driven spectrum that blooms with the music.</p>
         </article>
-
         <article class="feature-card">
-          <p class="card-kicker">Audio-first</p>
-          <h3>Copy is shorter and more tactile.</h3>
-          <p>The emphasis is on drop, play, shape and react, matching how the player is actually used.</p>
+          <h3>Equalizer presets</h3>
+          <p>Bass, mid, treble controls plus quick preset switching.</p>
         </article>
-
         <article class="feature-card">
-          <p class="card-kicker">Mobile Match</p>
-          <h3>Landing and app no longer fight each other.</h3>
-          <p>The darker baseline now sits much closer to what users see once they enter the player on phone.</p>
+          <h3>Quick search</h3>
+          <p>Find tracks fast with an inline search panel.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Playback shortcuts</h3>
+          <p>Keyboard-friendly controls for shuffle, repeat, and seek.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Mobile-first layout</h3>
+          <p>Drawer playlist and optimized controls for small screens.</p>
         </article>
       </div>
     </section>
 
-    <section id="demo" class="section section-shell demo-section">
+    <section id="demo" class="section demo">
       <div class="section-head">
-        <p class="section-kicker">Demo</p>
-        <h2>See the same glow logic carry through the real player.</h2>
+        <h2>Demo</h2>
       </div>
-
-      <div class="demo-layout">
-        <div class="demo-copy">
-          <p class="demo-label">Instant session</p>
-          <h3>Upload tracks, sculpt EQ, watch the scene react.</h3>
-          <p>
-            The demo still runs fully in-browser. No backend playlist pipeline, no fake rendering,
-            just local audio processing, canvas visuals and persistent session state.
-          </p>
-          <div class="demo-points">
-            <span>Drag &amp; drop playlists</span>
-            <span>Reactive canvas visualizer</span>
-            <span>Preset + manual EQ</span>
-          </div>
-          <a class="primary-btn" href="https://nataliaans78-lang.github.io/EchoGlow/app/">Open Demo</a>
-        </div>
-
+      <div class="demo-grid">
         <div class="demo-media">
           <video id="demoVideo" autoplay muted loop playsinline webkit-playsinline controls preload="none">
             <source data-src="./assets/video/hello_demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+        <div class="demo-copy">
+          <h3>Try it instantly</h3>
+          <p>
+            Upload your audio, tune the EQ, and explore the neon interface.
+            Everything runs locally in your browser.
+          </p>
+          <a class="primary-btn" href="https://nataliaans78-lang.github.io/EchoGlow/app/">Open Demo</a>
+        </div>
       </div>
     </section>
 
-    <section id="how" class="section section-shell">
+    <section id="how" class="section">
       <div class="section-head">
-        <p class="section-kicker">Flow</p>
-        <h2>Three moves from silence to a full neon session.</h2>
+        <h2>How it works</h2>
+        <p>Three quick steps from silence to glow.</p>
       </div>
-
       <div class="steps">
-        <article class="step">
-          <span class="step-index">01</span>
-          <h3>Drop your library</h3>
-          <p>Files and folders land directly in the playlist without sending anything away from the browser.</p>
-        </article>
-        <article class="step">
-          <span class="step-index">02</span>
-          <h3>Tune the response</h3>
-          <p>Shift bass, mid and treble until the playback shape matches what you want to hear.</p>
-        </article>
-        <article class="step">
-          <span class="step-index">03</span>
-          <h3>Let the scene glow</h3>
-          <p>The visualizer, chrome and bloom cues keep the experience feeling alive while playback runs.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="stack" class="section section-shell">
-      <div class="stack-panel">
-        <div class="section-head">
-          <p class="section-kicker">Stack</p>
-          <h2>Lean web tech, presented with a much stronger player-like wrapper.</h2>
-          <p>The stack is still native to the browser. The difference is mostly visual discipline and clearer hierarchy.</p>
+        <div class="step">
+          <h3>Drop your tracks</h3>
+          <p>Drag files or folders to build the playlist in seconds.</p>
         </div>
-
-        <div class="stack-grid">
-          <div class="stack-item">HTML5</div>
-          <div class="stack-item">CSS3</div>
-          <div class="stack-item">JavaScript</div>
-          <div class="stack-item">Web Audio API</div>
-          <div class="stack-item">Canvas</div>
-          <div class="stack-item">IndexedDB</div>
+        <div class="step">
+          <h3>Shape the sound</h3>
+          <p>Use the equalizer presets or tweak bands manually.</p>
+        </div>
+        <div class="step">
+          <h3>Play & visualize</h3>
+          <p>Enjoy real-time visual feedback synced to your music.</p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section section-shell cta">
+    <section id="stack" class="section">
+      <div class="section-head">
+        <h2>Tech stack</h2>
+        <p>Lean, fast, and built with web-native tools.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-item">HTML5</div>
+        <div class="stack-item">CSS3</div>
+        <div class="stack-item">JavaScript</div>
+        <div class="stack-item">Web Audio API</div>
+        <div class="stack-item">Canvas</div>
+        <div class="stack-item">IndexedDB</div>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta">
       <div class="cta-card">
         <div>
-          <p class="section-kicker">Contact</p>
-          <h2>Want tweaks, bug fixes or another visual pass on the player?</h2>
-          <p>Send a message directly from the landing without losing the same dark neon tone.</p>
+          <h2>Get in touch</h2>
+          <p>Send a message about feedback, bugs, or collaboration ideas.</p>
         </div>
         <div class="cta-actions">
           <button class="primary-btn" type="button" data-open-contact>Send Message</button>
@@ -224,31 +164,30 @@
       </div>
     </section>
 
-    <section id="faq" class="section section-shell">
+    <section id="faq" class="section">
       <div class="section-head">
-        <p class="section-kicker">FAQ</p>
-        <h2>Short answers, same visual system.</h2>
+        <h2>FAQ</h2>
+        <p>Short answers for common questions.</p>
       </div>
-
       <div class="faq-grid">
-        <article class="faq-item">
+        <div class="faq-item">
           <h3>Does it work offline?</h3>
-          <p>Yes. The player is wired as a PWA and continues to run once the required assets are cached.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Does it remember my state?</h3>
-          <p>Playlist data and playback-related preferences persist locally, so sessions survive reloads.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Can I use my own files?</h3>
-          <p>Yes. EchoGlow is built around local audio files, drag-and-drop flows and browser-native processing.</p>
-        </article>
+          <p>Yes. All audio processing happens in your browser once loaded.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does it save my playlist?</h3>
+          <p>Your current playlist and settings persist between sessions via local storage.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use my own audio files?</h3>
+          <p>Absolutely. Drag and drop any supported audio format from your device.</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>EchoGlow blends playlist, EQ and visualizer into one neon browser scene.</p>
+    <p>Built with HTML, CSS, JavaScript, Web Audio API, and plenty of neon.</p>
   </footer>
 
   <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" aria-hidden="true">
@@ -297,7 +236,6 @@
       </div>
     </div>
   </div>
-
   <script type="module" src="js/main.js"></script>
   <script>
   if ("serviceWorker" in navigator) {
