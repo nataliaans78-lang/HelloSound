@@ -163,6 +163,43 @@
         to{stroke-dashoffset:-760}
       }
 
+      .pulseRing{
+        fill:none;
+        stroke:url(#ringGrad);
+        stroke-width:1.6;
+        opacity:.22;
+        transform-box: fill-box;
+        transform-origin:center;
+        animation:pulseRing 4.8s infinite ease-out;
+      }
+
+      .pr1{animation-delay:0s;}
+      .pr2{animation-delay:1.2s;}
+      .pr3{animation-delay:2.4s;}
+
+      @keyframes pulseRing{
+        0%{transform:scale(.82); opacity:0;}
+        24%{opacity:.34;}
+        62%{opacity:.12;}
+        100%{transform:scale(1.22); opacity:0;}
+      }
+
+      .leftPulse{
+        fill:none;
+        stroke:url(#ringGrad);
+        stroke-width:1.4;
+        opacity:.2;
+        transform-box: fill-box;
+        transform-origin:center;
+        animation:leftPulse 4.4s infinite ease-out;
+      }
+
+      @keyframes leftPulse{
+        0%{transform:scale(.88); opacity:0;}
+        30%{opacity:.26;}
+        100%{transform:scale(1.16); opacity:0;}
+      }
+
       .spark{
         animation:twinkle 4s infinite ease-in-out;
         filter:url(#miniGlow);
@@ -222,6 +259,21 @@
     <path class="wave w3" d="M80 185 C 170 145,260 225,350 185 S530 145,620 185 S800 225,890 185 S1070 145,1160 185"/>
   </g>
 
+  <g transform="translate(62 56)">
+    <ellipse class="leftPulse" cx="170" cy="74" rx="92" ry="26"/>
+    <g fill="#7cf7ff">
+      <circle class="spark s4" cx="42" cy="106" r="1.4"/>
+      <circle class="spark2 s8" cx="118" cy="26" r="1.6"/>
+      <circle class="spark3 s12" cx="208" cy="34" r="1.2"/>
+      <circle class="spark s19" cx="254" cy="96" r="1.5"/>
+    </g>
+    <g fill="#d97cff">
+      <circle class="spark2 s3" cx="82" cy="132" r="1.2"/>
+      <circle class="spark3 s16" cx="156" cy="18" r="1.1"/>
+      <circle class="spark s21" cx="232" cy="118" r="1.1"/>
+    </g>
+  </g>
+
   <g transform="translate(920 20)">
     <ellipse cx="140" cy="130" rx="115" ry="108"
       fill="none" stroke="url(#ringGrad)" stroke-width="4"/>
@@ -237,6 +289,9 @@
       transform="rotate(-18 140 130)"/>
 
     <ellipse cx="140" cy="130" rx="92" ry="78" fill="url(#bassGlow)"/>
+    <ellipse class="pulseRing pr1" cx="140" cy="130" rx="96" ry="82"/>
+    <ellipse class="pulseRing pr2" cx="140" cy="130" rx="96" ry="82"/>
+    <ellipse class="pulseRing pr3" cx="140" cy="130" rx="96" ry="82"/>
 
     <g>
       <rect class="bar b1" x="50"  y="117" width="12" height="26" rx="6"/>

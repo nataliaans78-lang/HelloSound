@@ -1,5 +1,5 @@
 ﻿<p align="center">
-  <img src="docs/assets/banner.svg?v=20260304-3" alt="EchoGlow banner" width="85%">
+  <img src="docs/assets/banner.svg?v=20260322-5" alt="EchoGlow banner" width="85%">
 </p>
 
 ---
@@ -114,6 +114,24 @@ Initial public release including:
 
 Run it from a local server.
 
+### Option A: Live Server
+
+Open the `docs` folder with VS Code and start **Live Server**.
+
+Landing page:
+
+```text
+/
+```
+
+App:
+
+```text
+/app/
+```
+
+### Option B: Python server
+
 ```bash
 cd docs
 python -m http.server 8000
@@ -122,7 +140,11 @@ python -m http.server 8000
 Then open:
 
 ```text
-http://localhost:8000/app/
+http://localhost:8000/
 ```
 
-Opening `docs/app/index.html` directly from the filesystem is not recommended, because features like modules and the service worker behave differently outside a local server context.
+or:
+
+```text
+http://localhost:8000/app/
+```
