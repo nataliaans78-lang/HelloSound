@@ -65,7 +65,7 @@
       <img
         src="docs/assets/image/ScreenShot_Mobile.png"
         alt="Mobile UI"
-        width="100%"
+        width="50%"
         style="display:block; margin: 10px auto;"
       />
     </td>
@@ -112,11 +112,17 @@ Initial public release including:
 
 ## ▶️ Run Locally
 
-### Option A (quick)
-Open `docs/app/index.html` in your browser.
-
-### Option B (local server)
+Run it from a local server.
 
 ```bash
 cd docs
 python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/app/
+```
+
+Opening `docs/app/index.html` directly from the filesystem is not recommended, because features like modules and the service worker behave differently outside a local server context.
